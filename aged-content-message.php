@@ -79,6 +79,11 @@ function aged_content_message__the_content( $content ) {
 	$years_diff = ( time() - get_the_time( 'U' ) ) / ( 60 * 60 * 24 * 365);
 	$age = apply_filters( 'aged_content_message__the_content_age', floor( $years_diff ) );
 
+	// Return original content if not too old
+	if ( $years_diff < apply_filters( 'aged_content_message__the_content_min_age', 1 ) ) {
+		return $content;
+	}
+
 	// Singular/plural form message.
 	$msg = apply_filters(
 		'aged_content_message__the_content_message',
@@ -95,9 +100,5 @@ function aged_content_message__the_content( $content ) {
 		)
 	);
 
-	if ( $years_diff >= apply_filters( 'aged_content_message__the_content_min_age', 1 ) ) {
-		$content = $msg . $content;
-	}
-
-	return $content;
+	return $msg . $content;
 }

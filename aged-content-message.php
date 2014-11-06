@@ -1,17 +1,19 @@
 <?php
-/*
-Plugin Name: Aged Content Message
-Text Domain: aged-content-message
-Domain Path: /languages
-Description: Displays a message at the top of single posts published x years ago or earlier, informing about content that may be outdated.
-Author: Caspar H&uuml;binger
-Author URI: http://glueckpress.com/
-Plugin URI: //wordpress.org/plugins/aged-content-message
-License: GPLv2 or later
-Version: 1.1
-*/
+/**
+ * Plugin Name: Aged Content Message
+ * Text Domain: aged-content-message
+ * Domain Path: /languages
+ * Description: Displays a message at the top of single posts published x years ago or earlier, informing about content that may be outdated.
+ * Author: Caspar Hübinger
+ * Author URI: http://glueckpress.com/
+ * Plugin URI: //wordpress.org/plugins/aged-content-message
+ * License: GPLv2 or later
+ * Version: 1.1
+ *
+ * Php Version 5.2
+ */
 
-/*
+/**
 Copyright (C)  2014-2014 Caspar Hübinger
 
 This program is free software; you can redistribute it and/or modify
@@ -34,7 +36,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-
 /* Load plugin. */
 function aged_content_message() {
 
@@ -44,9 +45,8 @@ function aged_content_message() {
 	// Add conditional message to content
 	add_action( 'the_content', 'aged_content_message__the_content' );
 }
+
 add_action( 'plugins_loaded', 'aged_content_message' );
-
-
 
 /**
  * Load plugin textdomain.
@@ -57,37 +57,45 @@ function aged_content_message__load_plugin_textdomain() {
 
 	load_plugin_textdomain(
 		'aged-content-message',
-		false,
+		FALSE,
 		dirname( plugin_basename( __FILE__ ) ) . '/languages'
 	);
 }
 
-
 /**
  * Conditionally add a message to content.
  *
- * @param string $content
+ * @param  string  $content
  * @return string
  */
 function aged_content_message__the_content( $content ) {
 
 	// Only single posts of post format "post".
-	if( apply_filters( 'aged_content_message__the_content_condition', ! is_single() ) )
+	if ( apply_filters( 'aged_content_message__the_content_condition', ! is_single() ) ) {
 		return $content;
+	}
 
 	$age = apply_filters( 'aged_content_message__the_content_age', date( 'Y' ) - get_the_time( 'Y' ) );
 
 	// Singular/plural form message.
-	$msg = apply_filters( 'aged_content_message__the_content_message',
-			sprintf( '<div class="aged-content-message"><hr /><h5>%1$s</h5><p>%2$s</p><hr /></div>' . "\n",
-				__( 'The times they are a-changin’.', 'aged-content-message' ),
-				sprintf( _n( 'This post seems to be older than a year—a long time on the internet. It might be outdated.',
+	$msg = apply_filters(
+		'aged_content_message__the_content_message',
+		sprintf(
+			'<div class="aged-content-message"><hr /><h5>%1$s</h5><p>%2$s</p><hr /></div>' . "\n",
+			__( 'The times they are a-changin’.', 'aged-content-message' ),
+			sprintf(
+				_n(
+					'This post seems to be older than a year—a long time on the internet. It might be outdated.',
 					'This post seems to be older than %s years—a long time on the internet. It might be outdated.',
-					$age, 'aged-content-message' ), $age )
-			) );
+					$age, 'aged-content-message'
+				), $age
+			)
+		)
+	);
 
-	if( $age >= apply_filters( 'aged_content_message__the_content_min_age', 1 ) )
+	if ( $age >= apply_filters( 'aged_content_message__the_content_min_age', 1 ) ) {
 		$content = $msg . $content;
+	}
 
 	return $content;
 }

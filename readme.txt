@@ -91,6 +91,9 @@ Honestly, I really felt it doesn’t need one, but it might get one in the futur
 
 == Changelog ==
 
+= 1.1.1 =
+* Fixed minor formatting issues.
+
 = 1.1 =
 * Fixed a broken link in readme.txt.
 

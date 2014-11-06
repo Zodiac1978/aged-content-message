@@ -4,13 +4,13 @@
  * Text Domain: aged-content-message
  * Domain Path: /languages
  * Description: Displays a message at the top of single posts published x years ago or earlier, informing about content that may be outdated.
- * Author: Caspar Hübinger
- * Author URI: http://glueckpress.com/
- * Plugin URI: //wordpress.org/plugins/aged-content-message
- * License: GPLv2 or later
- * Version: 1.1
+ * Author:      Caspar Hübinger
+ * Author URI:  http://glueckpress.com/
+ * Plugin URI:  //wordpress.org/plugins/aged-content-message
+ * License:     GPLv2 or later
+ * Version:     1.1.1
  *
- * Php Version 5.2
+ * PHP Version: 5.2
  */
 
 /**
@@ -57,7 +57,7 @@ function aged_content_message__load_plugin_textdomain() {
 
 	load_plugin_textdomain(
 		'aged-content-message',
-		FALSE,
+		false,
 		dirname( plugin_basename( __FILE__ ) ) . '/languages'
 	);
 }

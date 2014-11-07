@@ -2,7 +2,7 @@
 Contributors: glueckpress
 Tags: content, notification, text, message, date, time, outdated, simple, warning, alert, world peace now
 Requires at least: 3.9
-Tested up to: 4.1-alpha-30237
+Tested up to: 4.1-alpha-30266
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -91,8 +91,11 @@ Honestly, I really felt it doesn’t need one, but it might get one in the futur
 
 == Changelog ==
 
+= 1.2 =
+* Improved post aging calculation, props [@Kau-Boy](//profiles.wordpress.org/Kau-Boy/)!
+
 = 1.1.1 =
-* Fixed minor formatting issues.
+* Fixed minor formatting issues, props [@bueltge](//profiles.wordpress.org/bueltge/)!
 
 = 1.1 =
 * Fixed a broken link in readme.txt.

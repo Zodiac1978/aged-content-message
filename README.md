@@ -89,6 +89,14 @@ _“The times, they are a-chagin’”: Message on a single post view informing 
 
 ## Changelog
 
+## 1.2
+
+* Improved post aging calculation, props [@2ndkauboy](//github.com/2ndkauboy)!
+
+### 1.1.1
+
+* Fixed minor formatting issues, props [@bueltge](//github.com/bueltge)!
+
 ### 1.1
 
 * Fixed a broken link in readme.txt.

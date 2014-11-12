@@ -76,7 +76,7 @@ function aged_content_message__the_content( $content ) {
 	}
 
 	// Calculate the age in years as a float
-	$years_diff = ( time() - get_the_time( 'U' ) ) / ( 60 * 60 * 24 * 365 );
+	$years_diff = ( time() - get_the_time( 'U' ) ) / YEAR_IN_SECONDS;
 	$age = apply_filters( 'aged_content_message__the_content_age', floor( $years_diff ) );
 
 	// Return original content if not too old

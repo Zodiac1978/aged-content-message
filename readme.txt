@@ -2,7 +2,7 @@
 Contributors: glueckpress
 Tags: content, notification, text, message, date, time, outdated, simple, warning, alert, world peace now
 Requires at least: 3.9
-Tested up to: 4.1-alpha-30266
+Tested up to: 4.2
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -83,13 +83,16 @@ add_action( 'aged_content_message__the_content_condition',
 
 = Crap, why doesn’t this plugin provide a real settings page? =
 
-Honestly, I really felt it doesn’t need one, but it might get one in the future—**if** you give it a [review with a 5 star rating](//wordpress.org/support/view/plugin-reviews/aged-content-message) and include a gentle reminder that a settings page would make you really happy. :)
+Honestly, I really felt it doesn’t need one, but it might get one in the future.
 
 == Screenshots ==
 
 1. “The times, they are a-chagin’”: Message on a single post view informing about content that might be outdated. (Not diggin’ Bootsrap that much these days.)
 
 == Changelog ==
+
+= 1.3 =
+* Simplified calculation by introducing core constant `YEAR_IN_SECONDS`, props [@sergejmueller](//profiles.wordpress.org/sergejmueller)!
 
 = 1.2 =
 * Improved post aging calculation, props [@Kau-Boy](//profiles.wordpress.org/Kau-Boy/)!

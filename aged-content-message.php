@@ -8,7 +8,7 @@
  * Author URI:  http://glueckpress.com/
  * Plugin URI:  //wordpress.org/plugins/aged-content-message
  * License:     GPLv2 or later
- * Version:     1.2
+ * Version:     1.3
  *
  * PHP Version: 5.2
  */

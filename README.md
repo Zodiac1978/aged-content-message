@@ -80,7 +80,7 @@ add_action( 'aged_content_message__the_content_condition',
 
 ### Crap, why doesn’t this plugin provide a real settings page?
 
-Honestly, I really felt it doesn’t need one, but it might get one in the future—**if** you give it a [review with a 5 star rating](//wordpress.org/support/view/plugin-reviews/aged-content-message) and include a gentle reminder that a settings page would make you really happy. :)
+Honestly, I really felt it doesn’t need one, but it might get one in the future.
 
 ## Screenshots
 
@@ -88,6 +88,10 @@ Honestly, I really felt it doesn’t need one, but it might get one in the futur
 _“The times, they are a-chagin’”: Message on a single post view informing about content that might be outdated. (Not diggin’ Bootsrap that much these days.)_
 
 ## Changelog
+
+## 1.3
+
+* simplified calculation by introducing core constant `YEAR_IN_SECONDS`, props [@sergejmueller](//github.com/sergejmueller)
 
 ## 1.2
 

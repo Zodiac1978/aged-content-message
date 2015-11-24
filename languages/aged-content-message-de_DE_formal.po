@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Aged Content Message 0.9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-18 23:39+0100\n"
-"PO-Revision-Date: Tue Nov 24 2015 19:25:13 GMT+0100 (CET)\n"
+"PO-Revision-Date: Tue Nov 24 2015 19:25:39 GMT+0100 (CET)\n"
 "Last-Translator: glueckpress <caspar@glueckpress.com>\n"
 "Language-Team: \n"
 "Language: German\n"
@@ -22,22 +22,9 @@ msgstr ""
 "esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
 "X-Loco-Target-Locale: de_DE"
 
-#: ../inc/admin.php:232
-msgid ""
-"This is a preview of how your notice looks like with your current settings."
-"<br>Note: Styling may vary dependent on theme styles inherited on your "
-"website."
-msgstr ""
-"Dies ist eine Vorschau, wie der Hinweis mit deinen zuletzt gespeicherten "
-"Einstellungen aussieht.<br>Beachte: Die visuelle Gestaltung kann auf deiner "
-"Website anders ausfallen, abhängig von den Styles, die von deinem Theme "
-"vielleicht vererbt werden."
-
-#. Name of the plugin
 msgid "Aged Content Message"
 msgstr "Hinweis für veraltete Inhalte"
 
-# @ aged-content-message
 msgid ""
 "Displays a message at the top of single posts published x years ago or "
 "earlier, informing about content that may be outdated."
@@ -46,16 +33,14 @@ msgstr ""
 "veröffentlicht wurde, eine Nachricht an, die darüber informiert, dass der "
 "Inhalt möglicherweise veraltet ist."
 
-#. URI of the plugin
 msgid "wordpress.org/plugins/aged-content-message"
 msgstr "de.wordpress.org/plugins/aged-content-message"
 
-# @ aged-content-message
-#: ../aged-content-message.php:107
+#: ../aged-content-message.php:109
 msgid "The times they are a-changin’."
 msgstr "Die Zeiten ändern sich."
 
-#: ../aged-content-message.php:108
+#: ../aged-content-message.php:110
 #, php-format
 msgid ""
 "This post seems to be older than %s year—a long time on the internet. It "
@@ -64,7 +49,7 @@ msgstr ""
 "Dieser Beitrag scheint älter als %s Jahr zu sein – eine lange Zeit im "
 "Internet. Der Inhalt ist vielleicht veraltet."
 
-#: ../aged-content-message.php:109
+#: ../aged-content-message.php:111
 #, php-format
 msgid ""
 "This post seems to be older than %s years—a long time on the internet. It "
@@ -73,85 +58,96 @@ msgstr ""
 "Dieser Beitrag scheint älter als %s Jahre zu sein – eine lange Zeit im "
 "Internet. Der Inhalt ist vielleicht veraltet."
 
-#: ../inc/admin.php:17
-msgid "Aged Content"
-msgstr "Veraltete Inhalte"
-
-#: ../inc/admin.php:41
-msgid "Preview"
-msgstr "Vorschau"
-
-#: ../inc/admin.php:48
-msgid "Activate Message"
-msgstr "Hinweis aktivieren"
-
-#: ../inc/admin.php:57
+#: ../inc/admin.php:36 ../inc/admin.php:91
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: ../inc/admin.php:64
+#: ../inc/admin.php:51
+msgid "Aged Content"
+msgstr "Veraltete Inhalte"
+
+#: ../inc/admin.php:75
+msgid "Preview"
+msgstr "Vorschau"
+
+#: ../inc/admin.php:82
+msgid "Activate Message"
+msgstr "Hinweis aktivieren"
+
+#: ../inc/admin.php:98
 msgid "Minimal Post Age"
 msgstr "Beitragsmindestalter"
 
-#: ../inc/admin.php:72
+#: ../inc/admin.php:106
 msgid "Message Heading"
 msgstr "Überschrift"
 
-#: ../inc/admin.php:80
+#: ../inc/admin.php:114
 msgid "Message Body (Singular)"
 msgstr "Text (Singular)"
 
-#: ../inc/admin.php:88
+#: ../inc/admin.php:122
 msgid "Message Body (Plural)"
 msgstr "Text (Plural)"
 
-#: ../inc/admin.php:96
+#: ../inc/admin.php:130
 msgid "Message HTML"
 msgstr "HTML-Template"
 
-#: ../inc/admin.php:104
+#: ../inc/admin.php:138
 msgid "Message CSS"
 msgstr "CSS-Stile"
 
-#: ../inc/admin.php:120
+#: ../inc/admin.php:154
 msgid "<strong>Ready?</strong> Activate the message on your website now."
-msgstr "<strong>Fertig?</strong> Aktiviere den Hinweis jetzt auf deiner Website."
+msgstr "<strong>Fertig?</strong> Aktivieren Sie den Hinweis jetzt auf Ihrer Website."
 
-#: ../inc/admin.php:123
+#: ../inc/admin.php:157
 msgid ""
 "<strong>The message is being displayed on your website right now.</strong> "
 "Uncheck to deactivate and re-configure."
 msgstr ""
-"<strong>Der Hinweis wird jetzt auf deiner Website angezeigt.</strong> "
-"Deaktiviere ihn hier, wenn du Einstellungen überarbeiten möchtest."
+"<strong>Der Hinweis wird jetzt auf Ihrer Website angezeigt.</strong> "
+"Deaktivieren Sie ihn hier, wenn Sie Einstellungen überarbeiten möchten."
 
-#: ../inc/admin.php:145
+#: ../inc/admin.php:179
 #, php-format
 msgid "Display message for posts older than %s year(s)."
 msgstr "Zeige Hinweis für Beiträge, die älter als %s Jahr(e) sind."
 
-#: ../inc/admin.php:174 ../inc/admin.php:189
+#: ../inc/admin.php:208 ../inc/admin.php:223
 #, php-format
 msgid "<code>%s</code> = post age in years (rounded)"
 msgstr "<code>%s</code> = Beitragsalter in Jahren (gerundet)"
 
-#: ../inc/admin.php:204
+#: ../inc/admin.php:238
 #, php-format
 msgid "<code>%1$s</code> = message heading; <code>%2$s</code> = message body"
 msgstr "<code>%1$s</code> = Hinweisüberschrift; <code>%2$s</code> = Hinweistext"
 
-#: ../inc/admin.php:219
+#: ../inc/admin.php:253
 msgid ""
 "Leave blank in order to not apply any styling, .e.g. when using an external "
 "stylesheet."
 msgstr ""
-"Leer lassen, um keine Styles anzuwenden, z.B. wenn du sie über ein externes "
-"Stylesheet zusteuerst."
+"Leer lassen, um keine Styles anzuwenden, z.B. wenn Sie sie über ein externes "
+"Stylesheet zusteuern."
 
 #: ../inc/admin.php:266
+msgid ""
+"This is a preview of how your notice looks like with your current settings."
+"<br>Note: Styling may vary dependent on theme styles inherited on your "
+"website."
+msgstr ""
+"Dies ist eine Vorschau, wie der Hinweis mit Ihren zuletzt gespeicherten "
+"Einstellungen aussieht.<br>Beachten Sie: Die visuelle Gestaltung kann auf "
+"Ihrer Website anders ausfallen, abhängig von den Styles, die von Ihrem Theme "
+"vielleicht vererbt werden."
+
+#: ../inc/admin.php:300
 msgid ""
 "Configure your settgins, then review the message above and activate it for "
 "your website."
 msgstr ""
-"Setze deine Einstellungen, dann sieh dir deinen Hinweis oben in der Vorschau "
-"an und aktiviere ihn auf deiner Website."
+"Setzen Sie Ihre Einstellungen, dann sehen Sie sich Ihren Hinweis oben in der "
+"Vorschau an, und aktivieren Sie ihn auf Ihrer Website."

@@ -1,8 +1,8 @@
 === Aged Content Message ===
-Contributors: glueckpress
+Contributors: glueckpress, sergejmueller, kau-boy, bueltge
 Tags: content, notification, text, message, date, time, outdated, simple, warning, alert, world peace now
 Requires at least: 3.9
-Tested up to: 4.2
+Tested up to: 4.4
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -11,12 +11,13 @@ Displays a message at the top of single posts published x years ago or earlier, 
 
 == Description ==
 
-This simple WordPress plugin displays a message in any single post that has been published x years ago from the current time or earlier. The default time to count back is 1 year, but you can [change that](//wordpress.org/plugins/aged-content-message/faq/).
+This simple WordPress plugin displays a message in any single post that has been published x years ago from the current time or earlier. The default time to count back is 1 year. Minimal post age as well as message text, HTML, and CSS are [fully customizable via settings](//wordpress.org/plugins/aged-content-message/faq/).
 
 = Languages =
 
 * English (en_US) _(default)_
 * German (de_DE)
+* Formal German (de_DE_formal)
 
 == Installation ==
 
@@ -24,72 +25,68 @@ If you don’t know how to install a plugin for WordPress, [here’s how](http:/
 
 == Frequently Asked Questions ==
 
-= My message doesn’t look like the one on the screenshot, what can I do? =
+= I can’t find the settings page, where is it? =
 
-That’s because the plugin cannot know about what styles would match your theme, so it doesn’t apply any by default. You can add the default styles below to the *style.css* file of your active theme ([child theme](//codex.wordpress.org/Child_Themes), preferably). If you’re not sure how to do that, you can alternatively use a plugin like [Simple Custom CSS](//wordpress.org/plugins/simple-custom-css/), or the Custom CSS module of [Jetpack](//wordpress.org/plugins/jetpack/).
+**It’s right there, under General Settings in your admin menu.** Configurable settings are:
+
+* __Activate Message__: By default, no message will show up on your website until you activate it here.
+* __Minimal Post Age__: Set a number of years for posts to be considered aged. Default: 1.
+* __Message Heading__: The heading. Default: _The times, they are a-changin’_. (Dylan, google him.)
+* __Message Body (Singular)__: The singular form of the message text, for 1 year-old posts.
+* __Message Body (Plural)__: The plural form of the message text, for 2+ year-old posts.
+* __Message HTML__: The HTML template for the message. You can completely control its output via this field if you want, or use placeholders for heading and text.
+* __Message CSS__: Customize the visual styling of your message right here. Or not.
+
+= Can I disable default styles? =
+
+Sure, just empty the _CSS_ field and no styles shall be applied. If you want to add styles to your theme instead, this might get you started:
 
 `/* Default styles */
 .aged-content-message {
 	background: #f7f7f7;
 	border-left: 5px solid #f39c12;
-	/* Sorry, cheating here.
-	   It’s Museo Slab on the screenshot. */
-	font-family: "Georgia", sans-serif;
+	font-family: inherit;
 	font-size: .875rem;
 	line-height: 1.5;
 	margin: 1.5rem 0;
 	padding: 1.5rem;
 }
-.aged-content-message hr {
-	display: none;
-}
 .aged-content-message h5 {
 	font-family: inherit;
 	font-size: .8125rem;
+	font-weight: bold;
 	line-height: 2;
 	margin: 0;
+	padding: 0;
 	text-transform: uppercase;
 }
 .aged-content-message p {
-	margin-bottom: 0;
+	margin: 0;
+	padding: 0;
 }`
 
-= I can’t find the settings page, where is it? =
+= Where have all the filters gone? =
 
-There is no settings page. You can customize the determination for post age, minimal age and, of course, the message itself via filters. Custom functions like these would go into the *functions.php* file of your active theme or—again—child theme:
+You can still use those good old filters from [v1.3](https://github.com/glueckpress/aged-content-message/tree/v1.3), like for this conditional handbrake that doesn’t have a setting (yet):
 
-`/* Show message for posts aged 2 years or older. */
-function yourprefix_aged_content_message__the_content_min_age() {
-	return 2;
-}
-add_action( 'aged_content_message__the_content_min_age',
-	'yourprefix_aged_content_message__the_content_min_age' );
-
-/* Modify markup and wording of message (here: matching the value of 2 years set above). */
-function yourprefix_aged_content_message__the_content_message() {
-	return sprintf( '<div class="aged-content-message"><h3>%1$s</h3><p><em>%2$s</em></p></div>' . "\n",
-		'Heads up! Content may be outdated.',
-		'This post seems to be older than 2 years. It might not as accurate as it used to be.' );
-}
-add_action( 'aged_content_message__the_content_message',
-	'yourprefix_aged_content_message__the_content_message' );
-
-/* Set condition for displaying message to include pages. */
+`/* Set condition for displaying message to include pages. */
 function yourprefix_aged_content_message__the_content_condition() {
 	return ! is_single() && ! is_page();
 }
 add_action( 'aged_content_message__the_content_condition',
 	'yourprefix_aged_content_message__the_content_condition' );`
 
-= Crap, why doesn’t this plugin provide a real settings page? =
-
-Honestly, I really felt it doesn’t need one, but it might get one in the future.
-
 == Screenshots ==
 
-1. “The times, they are a-chagin’”: Message on a single post view informing about content that might be outdated. (Not diggin’ Bootsrap that much these days.)
+1. “The times, they are a-chagin’”: Message on a single post view informing about content that might be outdated.
+
+2. Settings page
 
 == Changelog ==
+
+= 1.4 =
+* Added settings. [Because](//wordpress.org/support/topic/no-settings-14?replies=5#post-6377383).
+* Added formal German translation.
 
 = 1.3 =
 * Simplified calculation by introducing core constant `YEAR_IN_SECONDS`, props [@sergejmueller](//profiles.wordpress.org/sergejmueller)!
@@ -105,3 +102,8 @@ Honestly, I really felt it doesn’t need one, but it might get one in the futur
 
 = 1.0 =
 * Initial release.
+
+== Upgrade Notice ==
+
+= 1.4 =
+You will manually have to activate one of the newly added settings in order for your message to keep appearing on your website. Update the plugin, then go to General Settings → Aged Content.

@@ -8,13 +8,11 @@
  * Author URI:  http://glueckpress.com/
  * Plugin URI:  //wordpress.org/plugins/aged-content-message
  * License:     GPLv2 or later
- * Version:     1.3
- *
- * PHP Version: 5.2
+ * Version:     1.4
  */
 
-/**
-Copyright (C)  2014-2014 Caspar Hübinger
+/*
+Copyright (C)  2014-2015 Caspar Hübinger
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -31,7 +29,6 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 */
 
-// Exit when accessed directly.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -40,65 +37,135 @@ if ( ! defined( 'ABSPATH' ) ) {
 function aged_content_message() {
 
 	// Load textdomain
-	aged_content_message__load_plugin_textdomain();
-
-	// Add conditional message to content
-	add_action( 'the_content', 'aged_content_message__the_content' );
-}
-
-add_action( 'plugins_loaded', 'aged_content_message' );
-
-/**
- * Load plugin textdomain.
- *
- * @return bool
- */
-function aged_content_message__load_plugin_textdomain() {
-
 	load_plugin_textdomain(
 		'aged-content-message',
 		false,
 		dirname( plugin_basename( __FILE__ ) ) . '/languages'
 	);
-}
 
-/**
- * Conditionally add a message to content.
- *
- * @param  string  $content
- * @return string
- */
-function aged_content_message__the_content( $content ) {
+	$inc_dir = dirname( __FILE__ ) . '/inc';
 
-	// Only single posts of post format "post".
-	if ( apply_filters( 'aged_content_message__the_content_condition', ! is_single() ) ) {
-		return $content;
+	// Admin functionality.
+	if ( is_admin() && current_user_can( 'manage_options' ) ) {
+
+		// Load settings page.
+		require_once( $inc_dir . '/admin.php' );
+
+		// Adds a Settings link to plugins page.
+		add_filter(
+			'plugin_action_links_' . plugin_basename( __FILE__ ),
+			'aged_content_message__plugins_page_settings_link'
+		);
 	}
 
-	// Calculate the age in years as a float
-	$years_diff = ( time() - get_the_time( 'U' ) ) / YEAR_IN_SECONDS;
-	$age = apply_filters( 'aged_content_message__the_content_age', floor( $years_diff ) );
+	// Front-end functionality.
+	if ( ! is_admin() ) {
+		require_once( $inc_dir . '/frontend.php' );
+	}
+}
+add_action( 'plugins_loaded', 'aged_content_message' );
 
-	// Return original content if not too old
-	if ( $years_diff < apply_filters( 'aged_content_message__the_content_min_age', 1 ) ) {
-		return $content;
+/**
+ * Render aged content message.
+ *
+ * @return string|integer Number of years
+ */
+function aged_content_message__message_render( $post_age = 1 ) {
+
+	$options = get_option( 'aged_content_message__settings' );
+
+	/**
+	 * Required settings:
+	 * - message HTML
+	 * - message activator (required for front-end only)
+	 */
+	if ( empty( $options )
+		|| ! isset( $options[ 'html' ] )
+		|| ! is_admin() && ! aged_content_message__is_activated()
+		) {
+		return;
 	}
 
 	// Singular/plural form message.
-	$msg = apply_filters(
-		'aged_content_message__the_content_message',
+	return sprintf(
+		// Balance those HTML tags.
+		balanceTags( wp_kses_post( $options[ 'html' ] ) ) . "\n",
+		wp_kses_post( $options[ 'heading' ] ),
 		sprintf(
-			'<div class="aged-content-message"><hr /><h5>%1$s</h5><p>%2$s</p><hr /></div>' . "\n",
-			__( 'The times they are a-changin’.', 'aged-content-message' ),
-			sprintf(
-				_n(
-					'This post seems to be older than a year—a long time on the internet. It might be outdated.',
-					'This post seems to be older than %s years—a long time on the internet. It might be outdated.',
-					$age, 'aged-content-message'
-				), $age
-			)
+			_n(
+				wp_kses_post( $options[ 'body_singular' ] ),
+				wp_kses_post( $options[ 'body_plural' ] ),
+				$post_age, 'aged-content-message'
+			), $post_age
 		)
 	);
+}
 
-	return $msg . $content;
+/**
+ * Default settings initially stored in aged_content_message__settings option.
+ *
+ * @return array Default settings
+ */
+function aged_content_message__defaults() {
+
+	$defaults = array();
+
+	// Activate message
+	$defaults[ 'activate' ] = 0;
+
+	// Minimum post age
+	$defaults[ 'min_age' ] = absint( apply_filters( 'aged_content_message__the_content_min_age', 1 ) );
+
+	// Text
+	$defaults[ 'heading' ]       = __( 'The times they are a-changin’.', 'aged-content-message' );
+	$defaults[ 'body_singular' ] = __( 'This post seems to be older than %s year—a long time on the internet. It might be outdated.', 'aged-content-message' );
+	$defaults[ 'body_plural' ]   = __( 'This post seems to be older than %s years—a long time on the internet. It might be outdated.', 'aged-content-message' );
+
+	// HTML
+	$defaults[ 'html' ]  = '<div class="aged-content-message">' . "\n";
+	$defaults[ 'html' ] .= '    <h5>%1$s</h5>' . "\n";
+	$defaults[ 'html' ] .= '    <p>%2$s</p>' . "\n";
+	$defaults[ 'html' ] .= '</div>';
+
+	// Styles
+	$defaults[ 'css' ]  = '.aged-content-message {' . "\n";
+	$defaults[ 'css' ] .= '    background: #f7f7f7;' . "\n";
+	$defaults[ 'css' ] .= '    border-left: 5px solid #f39c12;' . "\n";
+	$defaults[ 'css' ] .= '    font-family: inherit;' . "\n";
+	$defaults[ 'css' ] .= '    font-size: .875rem;' . "\n";
+	$defaults[ 'css' ] .= '    line-height: 1.5;' . "\n";
+	$defaults[ 'css' ] .= '    margin: 1.5rem 0;' . "\n";
+	$defaults[ 'css' ] .= '    padding: 1.5rem;' . "\n";
+	$defaults[ 'css' ] .= '}' . "\n";
+	$defaults[ 'css' ] .= '.aged-content-message h5 {' . "\n";
+	$defaults[ 'css' ] .= '    font-family: inherit;' . "\n";
+	$defaults[ 'css' ] .= '    font-size: .8125rem;' . "\n";
+	$defaults[ 'css' ] .= '    font-weight: bold;' . "\n";
+	$defaults[ 'css' ] .= '    line-height: 2;' . "\n";
+	$defaults[ 'css' ] .= '    margin: 0;' . "\n";
+	$defaults[ 'css' ] .= '    padding: 0;' . "\n";
+	$defaults[ 'css' ] .= '    text-transform: uppercase;' . "\n";
+	$defaults[ 'css' ] .= '}' . "\n";
+	$defaults[ 'css' ] .= '.aged-content-message p {' . "\n";
+	$defaults[ 'css' ] .= '    margin: 0;' . "\n";
+	$defaults[ 'css' ] .= '    padding: 0;' . "\n";
+	$defaults[ 'css' ] .= '}';
+
+	return $defaults;
+}
+
+/**
+ * Conditional tag styled utility function to determine whether or not
+ * displaying the message has been activated.
+ *
+ * @return boolean Setting is active, or not.
+ */
+function aged_content_message__is_activated() {
+
+	$options = get_option( 'aged_content_message__settings' );
+
+	return apply_filters(
+		'aged_content_message__is_activated',
+		(bool) isset( $options[ 'activate' ] ) && 1 === absint( $options[ 'activate' ] )
+	);
 }

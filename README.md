@@ -74,8 +74,8 @@ add_action( 'aged_content_message__the_content_condition',
 
 ## Screenshots
 
-![screenshot-1.jpg](https://raw.githubusercontent.com/glueckpress/aged-content-message/assets/assets/screenshot-1.jpg)
+![screenshot-1.jpg](https://raw.githubusercontent.com/glueckpress/aged-content-message/assets/screenshot-1.jpg)
 _“The times, they are a-chagin’”: Message on a single post view informing about content that might be outdated._
 
-![screenshot-2.jpg](https://raw.githubusercontent.com/glueckpress/aged-content-message/assets/assets/screenshot-2.jpg)
+![screenshot-2.jpg](https://raw.githubusercontent.com/glueckpress/aged-content-message/assets/screenshot-2.jpg)
 _Settings page_

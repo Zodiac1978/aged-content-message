@@ -5,7 +5,7 @@
  * Domain Path: /languages
  * Description: Displays a message at the top of single posts published x years ago or earlier, informing about content that may be outdated.
  * Author:      Caspar Hübinger
- * Author URI:  http://glueckpress.com/
+ * Author URI:  //profiles.wordpress.org/glueckpress/
  * Plugin URI:  //wordpress.org/plugins/aged-content-message
  * License:     GPLv2 or later
  * Version:     1.4
@@ -86,15 +86,18 @@ function aged_content_message__message_render( $post_age = 1 ) {
 		return;
 	}
 
+	$html     = force_balance_tags( $options[ 'html' ] );
+	$post_age = absint( $post_age );
+
 	// Singular/plural form message.
 	return sprintf(
 		// Balance those HTML tags.
-		balanceTags( wp_kses_post( $options[ 'html' ] ) ) . "\n",
-		wp_kses_post( $options[ 'heading' ] ),
+		wp_kses_post( $html ) . "\n",
+		sanitize_post_field( 'post_title', $options[ 'heading' ], 0, 'display' ),
 		sprintf(
 			_n(
-				wp_kses_post( $options[ 'body_singular' ] ),
-				wp_kses_post( $options[ 'body_plural' ] ),
+				sanitize_post_field( 'post_content', $options[ 'body_singular' ], 0, 'display' ),
+				sanitize_post_field( 'post_content', $options[ 'body_plural' ], 0, 'display' ),
 				$post_age, 'aged-content-message'
 			), $post_age
 		)
@@ -169,3 +172,22 @@ function aged_content_message__is_activated() {
 		(bool) isset( $options[ 'activate' ] ) && 1 === absint( $options[ 'activate' ] )
 	);
 }
+
+/**
+ * Do stuff when deactivating the plugin.
+ *
+ * @return void
+ */
+function aged_content_message__uninstall () {
+
+	// Show admin notice again as a reminder when re-activating.
+	delete_option( 'aged_content_message__status' );
+
+	// Deactivate displaying of message in the frontend.
+	$options = get_option( 'aged_content_message__settings' );
+	unset( $options[ 'activate' ] );
+
+	// Leave other settings untouched.
+	update_option( 'aged_content_message__settings', $options );
+}
+register_deactivation_hook( __FILE__, 'aged_content_message__uninstall' );

@@ -2,8 +2,19 @@
 /**
  * Adds a settings page to Settings menu.
  */
+add_action( 'admin_notices', 'aged_content_message__admin_print_avtivation_notice' );
 add_action( 'admin_menu', 'aged_content_message__add_admin_menu' );
 add_action( 'admin_init', 'aged_content_message__settings_init' );
+
+/**
+ * URL for plugin settings page.
+ *
+ * @return string Settings page URL
+ */
+function aged_content_message__admin_get_settings_page_url() {
+
+	return add_query_arg( array( 'page' => 'aged-content-message' ), admin_url( 'options-general.php' ) );
+}
 
 /**
  * Settings link on the plugin page.
@@ -20,7 +31,7 @@ function aged_content_message__plugins_page_settings_link ( $plugin_links ) {
 	// Thou shalt, however, edit your settings quickly.
 	$plugin_links[ 'aged-content-message-settings' ] = sprintf(
 		'<a href="%1$s">%2$s</a>',
-		add_query_arg( array( 'page' => 'aged-content-message' ), admin_url( 'options-general.php' ) ),
+		esc_url( aged_content_message__admin_get_settings_page_url() ),
 		__( 'Settings', 'aged-content-message' )
 	);
 
@@ -139,7 +150,7 @@ function aged_content_message__settings_init() {
 function aged_content_message__activate_render() {
 
 	$options     = get_option( 'aged_content_message__settings' );
-	$value       = isset( $options[ 'activate' ] ) ? esc_attr( absint( $options[ 'activate' ] ) ) : '';
+	$value       = isset( $options[ 'activate' ] ) ? absint( $options[ 'activate' ] ) : 0;
 	$description = __( '<strong>Ready?</strong> Activate the message on your website now.', 'aged-content-message' );
 
 	if ( ! empty( $value ) ) {
@@ -147,8 +158,8 @@ function aged_content_message__activate_render() {
 	}
 	?>
 	<label for="aged_content_message__settings[activate]">
-		<input type="checkbox" id="aged_content_message__settings[activate]" name="aged_content_message__settings[activate]" <?php checked( $value, 1 ); ?> value='1'>
-		<?php echo wp_kses_post( $description ); ?>
+		<input type="checkbox" id="aged_content_message__settings[activate]" name="aged_content_message__settings[activate]" <?php checked( esc_attr( $value ), 1 ); ?> value="1">
+		<?php echo $description; ?>
 	</label>
 	<?php
 }
@@ -161,11 +172,11 @@ function aged_content_message__activate_render() {
 function aged_content_message__min_age_render() {
 
 	$options = get_option( 'aged_content_message__settings' );
-	$value = esc_attr( absint( $options[ 'min_age' ] ) );
+	$value   = absint( $options[ 'min_age' ] );
 
 	$input = sprintf(
 		'<input type="number" min="1" id="aged_content_message__settings[min_age]" name="aged_content_message__settings[min_age]" value="%s" class="small-text">',
-			sanitize_text_field( $value )
+		esc_attr( $value )
 	);
 	?>
 	<label for="aged_content_message__settings[min_age]"><?php printf( __( 'Display message for posts older than %s year(s).', 'aged-content-message' ), $input ); ?></label>
@@ -180,9 +191,9 @@ function aged_content_message__min_age_render() {
 function aged_content_message__heading_render() {
 
 	$options = get_option( 'aged_content_message__settings' );
-	$value   = esc_attr( $options[ 'heading' ] );
+	$value   = sanitize_post_field( 'post_title', $options[ 'heading' ], 0, 'db' );
 	?>
-	<input type="text" id="aged_content_message__settings[heading]" name="aged_content_message__settings[heading]" value="<?php echo sanitize_text_field( $value ); ?>" class="regular-text">
+	<input type="text" id="aged_content_message__settings[heading]" name="aged_content_message__settings[heading]" value="<?php echo esc_attr( $value ); ?>" class="regular-text">
 	<?php
 }
 
@@ -194,9 +205,9 @@ function aged_content_message__heading_render() {
 function aged_content_message__body_singular_render() {
 
 	$options = get_option( 'aged_content_message__settings' );
-	$value   = esc_textarea( $options[ 'body_singular' ] );
+	$value   = sanitize_post_field( 'post_content', $options[ 'body_singular' ], 0, 'db' );
 	?>
-	<textarea cols="46" rows="6" id="aged_content_message__settings[body_singular]" name="aged_content_message__settings[body_singular]" class="regular-text"><?php echo $value; ?></textarea>
+	<textarea cols="46" rows="6" id="aged_content_message__settings[body_singular]" name="aged_content_message__settings[body_singular]" class="regular-text"><?php echo esc_textarea( $value ); ?></textarea>
 	<p class="description"><?php _e( '<code>%s</code> = post age in years (rounded)', 'aged-content-message' ); ?></p>
 	<?php
 }
@@ -209,9 +220,9 @@ function aged_content_message__body_singular_render() {
 function aged_content_message__body_plural_render() {
 
 	$options = get_option( 'aged_content_message__settings' );
-	$value   = esc_textarea( $options[ 'body_plural' ] );
+	$value   = sanitize_post_field( 'post_content', $options[ 'body_plural' ], 0, 'db' );
 	?>
-	<textarea cols="46" rows="6" id="aged_content_message__settings[body_plural]" name="aged_content_message__settings[body_plural]" class="regular-text"><?php echo $value; ?></textarea>
+	<textarea cols="46" rows="6" id="aged_content_message__settings[body_plural]" name="aged_content_message__settings[body_plural]" class="regular-text"><?php echo esc_textarea( $value ); ?></textarea>
 	<p class="description"><?php _e( '<code>%s</code> = post age in years (rounded)', 'aged-content-message' ); ?></p>
 	<?php
 }
@@ -224,9 +235,10 @@ function aged_content_message__body_plural_render() {
 function aged_content_message__html_render() {
 
 	$options = (array) get_option( 'aged_content_message__settings' );
-	$value   = esc_textarea( $options[ 'html' ] );
+	$html    = force_balance_tags( $options[ 'html' ] );
+	$value   = sanitize_post_field( 'post_content', $html, 0, 'db' );
 	?>
-	<textarea cols="40" rows="6" id="aged_content_message__settings[html]" name="aged_content_message__settings[html]" class="regular-text code"><?php echo $value; ?></textarea>
+	<textarea cols="40" rows="6" id="aged_content_message__settings[html]" name="aged_content_message__settings[html]" class="regular-text code"><?php echo esc_textarea( $value ); ?></textarea>
 	<p class="description"><?php _e( '<code>%1$s</code> = message heading; <code>%2$s</code> = message body', 'aged-content-message' ); ?></p>
 	<?php
 }
@@ -239,47 +251,10 @@ function aged_content_message__html_render() {
 function aged_content_message__css_render() {
 
 	$options = (array) get_option( 'aged_content_message__settings' );
-	$value   = esc_textarea( $options[ 'css' ] );
+	$value   = sanitize_post_field( 'post_content', $options[ 'css' ], 0, 'db' );
 	?>
-	<textarea cols="40" rows="6" name="aged_content_message__settings[css]" class="regular-text code"><?php echo $value; ?></textarea>
+	<textarea cols="40" rows="6" name="aged_content_message__settings[css]" class="regular-text code"><?php echo esc_textarea( $value ); ?></textarea>
 	<p class="description"><?php _e( 'Leave blank in order to not apply any styling, .e.g. when using an external stylesheet.', 'aged-content-message' ); ?></p>
-	<?php
-}
-
-/**
- * Preview section.
- *
- * @return void
- */
-function aged_content_message__settings_preview() {
-
-	$options = get_option( 'aged_content_message__settings' );
-	$age = sanitize_text_field( absint( $options[ 'min_age' ] ) );
-	$css = sanitize_text_field( wp_kses_post( $options[ 'css' ] ) );
-	?>
-	<p><?php _e( 'This is a preview of how your notice looks like with your current settings.<br>Note: Styling may vary dependent on theme styles inherited on your website.', 'aged-content-message' ); ?></p>
-	<div class="aged-content-message-preview">
-		<style type="text/css" media="screen" scoped>
-			.aged-content-message-preview {
-				background: #212121;
-				border: 10px solid #212121;
-				-webkit-box-sizing: border-box;
-				   -moz-box-sizing: border-box;
-				    -ms-box-sizing: border-box;
-				     -o-box-sizing: border-box;
-				        box-sizing: border-box;
-				max-width: 36rem;
-				padding: 0;
-				width: 95%;
-			}
-
-			<?php echo $css; ?>
-
-		</style>
-
-		<?php echo aged_content_message__message_render( $age ); ?>
-
-	</div>
 	<?php
 }
 
@@ -314,5 +289,68 @@ function aged_content_message__settings_page() {
 		?>
 
 	</form>
+	<?php
+}
+
+/**
+ * Print admin notice after plugin activation.
+ *
+ * @return void
+ */
+function aged_content_message__admin_print_avtivation_notice() {
+
+	$status = get_option( 'aged_content_message__status' );
+
+	// Been there, done that?
+	if ( 'dismissed' === $status ) {
+		return;
+	}
+
+	$message = sprintf(
+		__( '<strong>Aged Content Message</strong> has been activated. Edit your <a href="%s">settings</a> in order to see the actual notice displayed on your site.', 'aged-content-message' ),
+		esc_url( aged_content_message__admin_get_settings_page_url() )
+	);
+
+	// Print notice.
+	printf( '<div class="notice notice-success is-dismissible"><p>%s</p></div>', $message );
+
+	// Prevent annoyance.
+	update_option( 'aged_content_message__status', 'dismissed' );
+}
+
+/**
+ * Preview section.
+ *
+ * @return void
+ */
+function aged_content_message__settings_preview() {
+
+	$options = get_option( 'aged_content_message__settings' );
+	$age     = absint( $options[ 'min_age' ] );
+	$css     = wp_kses_post( $options[ 'css' ] );
+	?>
+	<p><?php _e( 'This is a preview of how your notice looks like with your current settings.<br>Note: Styling may vary dependent on theme styles inherited on your website.', 'aged-content-message' ); ?></p>
+	<div class="aged-content-message-preview">
+		<style type="text/css" media="screen" scoped>
+			.aged-content-message-preview {
+				background: #212121;
+				border: 10px solid #212121;
+				-webkit-box-sizing: border-box;
+				   -moz-box-sizing: border-box;
+				    -ms-box-sizing: border-box;
+				     -o-box-sizing: border-box;
+				        box-sizing: border-box;
+				max-width: 36rem;
+				padding: 0;
+				width: 95%;
+			}
+
+			<?php echo $css; ?>
+
+		</style>
+
+		<?php echo aged_content_message__message_render( $age ); ?>
+
+	</div>
 	<?php
 }

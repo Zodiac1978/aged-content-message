@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Aged Content Message 0.9\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-18 23:39+0100\n"
-"POT-Revision-Date: Tue Nov 24 2015 19:20:05 GMT+0100 (CET)\n"
+"POT-Revision-Date: Thu Dec 03 2015 16:38:04 GMT+0100 (CET)\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: glueckpress <caspar@glueckpress.com>\n"
 "Language-Team: \n"
@@ -41,25 +41,25 @@ msgstr ""
 msgid "wordpress.org/plugins/aged-content-message"
 msgstr ""
 
-#: ../aged-content-message.php:109
+#: ../aged-content-message.php:123
 msgid "The times they are a-changin’."
 msgstr ""
 
-#: ../aged-content-message.php:110
+#: ../aged-content-message.php:124
 #, php-format
 msgid ""
 "This post seems to be older than %s year—a long time on the internet. It "
 "might be outdated."
 msgstr ""
 
-#: ../aged-content-message.php:111
+#: ../aged-content-message.php:125
 #, php-format
 msgid ""
 "This post seems to be older than %s years—a long time on the internet. It "
 "might be outdated."
 msgstr ""
 
-#: ../inc/admin.php:36 ../inc/admin.php:91
+#: ../inc/admin.php:35 ../inc/admin.php:91
 msgid "Settings"
 msgstr ""
 
@@ -109,36 +109,44 @@ msgid ""
 "Uncheck to deactivate and re-configure."
 msgstr ""
 
-#: ../inc/admin.php:179
+#: ../inc/admin.php:182
 #, php-format
 msgid "Display message for posts older than %s year(s)."
 msgstr ""
 
-#: ../inc/admin.php:208 ../inc/admin.php:223
+#: ../inc/admin.php:211 ../inc/admin.php:226
 #, php-format
 msgid "<code>%s</code> = post age in years (rounded)"
 msgstr ""
 
-#: ../inc/admin.php:238
+#: ../inc/admin.php:242
 #, php-format
 msgid "<code>%1$s</code> = message heading; <code>%2$s</code> = message body"
 msgstr ""
 
-#: ../inc/admin.php:253
+#: ../inc/admin.php:257
 msgid ""
 "Leave blank in order to not apply any styling, .e.g. when using an external "
 "stylesheet."
 msgstr ""
 
-#: ../inc/admin.php:266
+#: ../inc/admin.php:269
+msgid ""
+"Configure your settgins, then review the message above and activate it for "
+"your website."
+msgstr ""
+
+#: ../inc/admin.php:310
+#, php-format
+msgid ""
+"<strong>Aged Content Message</strong> has been activated. Edit your <a "
+"href=\"%s\">settings</a> in order to see the actual notice displayed on your "
+"site."
+msgstr ""
+
+#: ../inc/admin.php:332
 msgid ""
 "This is a preview of how your notice looks like with your current settings."
 "<br>Note: Styling may vary dependent on theme styles inherited on your "
 "website."
-msgstr ""
-
-#: ../inc/admin.php:300
-msgid ""
-"Configure your settgins, then review the message above and activate it for "
-"your website."
 msgstr ""

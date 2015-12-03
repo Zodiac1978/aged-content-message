@@ -1,11 +1,12 @@
 # Aged Content Message
-* Contributors: glueckpress, sergejmueller, kau-boy, bueltge, chrico
-* Tags: content, notification, text, message, date, time, outdated, simple, warning, alert, world peace now
+* Contributors:      glueckpress, sergejmueller, kau-boy, bueltge, chrico
+* Donate Link:       https://paypal.me/caspar
+* Tags:              content, notification, text, message, date, time, outdated, simple, warning, alert
 * Requires at least: 3.9
-* Tested up to: 4.4
-* Stable tag: trunk
-* License: GPLv2 or later
-* License URI: http://www.gnu.org/licenses/gpl-2.0.html
+* Tested up to:      4.4
+* Stable tag:        trunk
+* License:           GPLv3
+* License URI:       http://www.gnu.org/licenses/gpl-3.0.html
 
 Displays a message at the top of single posts published x years ago or earlier, informing about content that may be outdated.
 

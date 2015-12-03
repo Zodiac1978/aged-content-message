@@ -5,7 +5,8 @@
 * Added settings. [Because](//wordpress.org/support/topic/no-settings-14?replies=5#post-6377383).
 * Added an admin notice after plugin activation.
 * Added formal German translation.
-* Added composer.json, props [@Chrico](//github.com/chrico)!
+* Added composer.json to [GitHub repo](//github.com/glueckpress/aged-content-message), props [@Chrico](//github.com/chrico)!
+* Updated plugin license to GPLv3
 
 ## 1.3
 

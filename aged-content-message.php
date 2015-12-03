@@ -7,7 +7,7 @@
  * Author:      Caspar Hübinger
  * Author URI:  //profiles.wordpress.org/glueckpress/
  * Plugin URI:  //wordpress.org/plugins/aged-content-message
- * License:     GPLv2 or later
+ * License:     GPLv3
  * Version:     1.4
  */
 

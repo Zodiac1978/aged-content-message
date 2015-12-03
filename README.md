@@ -1,4 +1,11 @@
 # Aged Content Message
+* Contributors: glueckpress, sergejmueller, kau-boy, bueltge, chrico
+* Tags: content, notification, text, message, date, time, outdated, simple, warning, alert, world peace now
+* Requires at least: 3.9
+* Tested up to: 4.4
+* Stable tag: trunk
+* License: GPLv2 or later
+* License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 Displays a message at the top of single posts published x years ago or earlier, informing about content that may be outdated.
 
@@ -10,6 +17,7 @@ This simple WordPress plugin displays a message in any single post that has been
 
 * English (en_US) _(default)_
 * German (de_DE)
+* Formal German (de_DE_formal)
 
 ## Installation
 

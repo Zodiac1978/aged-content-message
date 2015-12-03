@@ -3,7 +3,9 @@
 ## 1.4
 
 * Added settings. [Because](//wordpress.org/support/topic/no-settings-14?replies=5#post-6377383).
+* Added an admin notice after plugin activation.
 * Added formal German translation.
+* Added composer.json, props [@Chrico](//github.com/chrico)!
 
 ## 1.3
 

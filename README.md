@@ -32,10 +32,11 @@ If you don’t know how to install a plugin for WordPress, [here’s how](http:/
 
 * __Activate Message__: By default, no message will show up on your website until you activate it here.
 * __Minimal Post Age__: Set a number of years for posts to be considered aged. Default: 1.
-* __Message Heading__: The heading. Default: _The times, they are a-changin’_. (Dylan, google him.)
-* __Message Body (Singular)__: The singular form of the message text, for 1 year-old posts.
-* __Message Body (Plural)__: The plural form of the message text, for 2+ year-old posts.
-* __Message HTML__: The HTML template for the message. You can completely control its output via this field if you want, or use placeholders for heading and text.
+* __Message Heading__: Heading text. Default: _The times, they are a-changin’_. (Dylan, google him.)
+* __Message Body (Singular)__: Singular form of the message text, for 1 year-old posts.
+* __Message Body (Plural)__: Plural form of the message text, for 2+ year-old posts.
+* __Message Class Attribute__: CSS class name(s) applied upon the message’s wrapping `<div>`.
+* __Message HTML__: HTML template for the message. You can completely control its output via this field if you want, or use placeholders for heading and text.
 * __Message CSS__: Customize the visual styling of your message right here. Or not.
 
 ### Can I disable default styles?

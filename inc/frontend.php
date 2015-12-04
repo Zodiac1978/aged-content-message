@@ -36,7 +36,8 @@ function aged_content_message__the_content( $content ) {
 	// Render message.
 	$msg = apply_filters(
 		'aged_content_message__the_content_message',
-		aged_content_message__message_render( $age )
+		aged_content_message__message_render( $age ),
+		$age
 	);
 
 	return $msg . $content;

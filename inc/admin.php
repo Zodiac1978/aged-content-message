@@ -64,8 +64,17 @@ function aged_content_message__settings_init() {
 
 	$defaults = aged_content_message__defaults();
 	$options  = get_option( 'aged_content_message__settings' );
+
+	// First run: fill option.
 	if ( empty( $options ) ) {
 		update_option( 'aged_content_message__settings', $defaults );
+	}
+
+	// Later runs: check for and merge new defaults.
+	if( ! empty( array_diff_key( $defaults, $options ) ) ) {
+
+		$options = wp_parse_args( $options, $defaults );
+		update_option( 'aged_content_message__settings', $options );
 	}
 
 	register_setting( 'aged_content_message', 'aged_content_message__settings' );
@@ -121,6 +130,14 @@ function aged_content_message__settings_init() {
 		'body_plural',
 		__( 'Message Body (Plural)', 'aged-content-message' ),
 		'aged_content_message__body_plural_render',
+		'aged_content_message',
+		'aged_content_message_settings'
+	);
+
+	add_settings_field(
+		'class',
+		__( 'Message Class Attribute', 'aged-content-message' ),
+		'aged_content_message__class_render',
 		'aged_content_message',
 		'aged_content_message_settings'
 	);
@@ -224,6 +241,21 @@ function aged_content_message__body_plural_render() {
 	?>
 	<textarea cols="46" rows="6" id="aged_content_message__settings[body_plural]" name="aged_content_message__settings[body_plural]" class="regular-text"><?php echo esc_textarea( $value ); ?></textarea>
 	<p class="description"><?php _e( '<code>%s</code> = post age in years (rounded)', 'aged-content-message' ); ?></p>
+	<?php
+}
+
+/**
+ * Message Class setting.
+ *
+ * @return void
+ */
+function aged_content_message__class_render() {
+
+	$options = get_option( 'aged_content_message__settings' );
+	$value   = aged_content_message__sanitize_html_class_names( $options[ 'class' ] );
+	?>
+	<input type="text" id="aged_content_message__settings[class]" name="aged_content_message__settings[class]" value="<?php echo esc_attr( $value ); ?>" class="regular-text">
+	<p class="description"><?php _e( 'Multiple class names allowed. If you change this, remember to update your CSS settings below.', 'aged-content-message' ); ?></p>
 	<?php
 }
 

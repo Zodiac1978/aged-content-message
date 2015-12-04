@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Aged Content Message 0.9\n"
+"Project-Id-Version: Aged Content Message\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-18 23:39+0100\n"
-"PO-Revision-Date: Thu Dec 03 2015 16:41:23 GMT+0100 (CET)\n"
+"PO-Revision-Date: Fri Dec 04 2015 17:59:59 GMT+0100 (CET)\n"
 "Last-Translator: glueckpress <caspar@glueckpress.com>\n"
 "Language-Team: \n"
 "Language: German\n"
@@ -22,6 +22,18 @@ msgstr ""
 "esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
 "X-Loco-Target-Locale: de_DE"
 
+#: ../inc/admin.php:139
+msgid "Message Class Attribute"
+msgstr "CSS-Klasse(n)"
+
+#: ../inc/admin.php:258
+msgid ""
+"Multiple class names allowed. If you change this, remember to update your "
+"CSS settings below."
+msgstr ""
+"Mehrere Klassennamen erlaubt. Änderungen bitte in den CSS-Stilen weiter "
+"unten berücksichtigen."
+
 #: ../inc/admin.php:310
 #, php-format
 msgid ""
@@ -33,9 +45,11 @@ msgstr ""
 "Sie die <a href=\"%s\">Einstellungen</a>, um den eigentlichen Hinweis auf "
 "Ihrer Website anzuzeigen."
 
+#. Name of the plugin
 msgid "Aged Content Message"
 msgstr "Hinweis für veraltete Inhalte"
 
+# @ aged-content-message
 msgid ""
 "Displays a message at the top of single posts published x years ago or "
 "earlier, informing about content that may be outdated."
@@ -44,6 +58,7 @@ msgstr ""
 "veröffentlicht wurde, eine Nachricht an, die darüber informiert, dass der "
 "Inhalt möglicherweise veraltet ist."
 
+#. URI of the plugin
 msgid "wordpress.org/plugins/aged-content-message"
 msgstr "de.wordpress.org/plugins/aged-content-message"
 

@@ -8,7 +8,7 @@
  * Author URI:  //profiles.wordpress.org/glueckpress/
  * Plugin URI:  //wordpress.org/plugins/aged-content-message
  * License:     GPLv3
- * Version:     1.4
+ * Version:     1.4.1
  */
 
 /*
@@ -93,6 +93,7 @@ function aged_content_message__message_render( $post_age = 1 ) {
 	return sprintf(
 		// Balance those HTML tags.
 		wp_kses_post( $html ) . "\n",
+		aged_content_message__sanitize_html_class_names( $options[ 'class' ] ),
 		sanitize_post_field( 'post_title', $options[ 'heading' ], 0, 'display' ),
 		sprintf(
 			_n(
@@ -124,10 +125,13 @@ function aged_content_message__defaults() {
 	$defaults[ 'body_singular' ] = __( 'This post seems to be older than %s year—a long time on the internet. It might be outdated.', 'aged-content-message' );
 	$defaults[ 'body_plural' ]   = __( 'This post seems to be older than %s years—a long time on the internet. It might be outdated.', 'aged-content-message' );
 
+	// Class
+	$defaults[ 'class' ] = 'aged-content-message';
+
 	// HTML
-	$defaults[ 'html' ]  = '<div class="aged-content-message">' . "\n";
-	$defaults[ 'html' ] .= '    <h5>%1$s</h5>' . "\n";
-	$defaults[ 'html' ] .= '    <p>%2$s</p>' . "\n";
+	$defaults[ 'html' ]  = '<div class="%1$s">' . "\n";
+	$defaults[ 'html' ] .= '    <h5>%2$s</h5>' . "\n";
+	$defaults[ 'html' ] .= '    <p>%3$s</p>' . "\n";
 	$defaults[ 'html' ] .= '</div>';
 
 	// Styles
@@ -171,6 +175,31 @@ function aged_content_message__is_activated() {
 		'aged_content_message__is_activated',
 		(bool) isset( $options[ 'activate' ] ) && 1 === absint( $options[ 'activate' ] )
 	);
+}
+
+/**
+ * Sanitize a string divided by spaces as HTML class name(s).
+ *
+ * @param  string $class_names A string of 1 or more class names
+ * @return string              Sanitized string
+ */
+function aged_content_message__sanitize_html_class_names( $class_names = '' ) {
+
+	// This can be multiple class names devided by spaces.
+	$classes_array = explode( ' ', $class_names );
+
+	// Sanitize each class name from the string.
+	foreach ( $classes_array as $k => $class_name ) {
+
+		// Let’s not loose umlauts, but replace them first.
+		$sanitized_as_title  = sanitize_title( $class_name );
+
+		// Now remove all the junk, but keep the former umlauts.
+		$classes_array[ $k ] = sanitize_html_class( $sanitized_as_title );
+	}
+
+	// Rebuild the string for output.
+	return implode( ' ', $classes_array );
 }
 
 /**

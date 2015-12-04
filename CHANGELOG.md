@@ -1,5 +1,9 @@
 # Changelog Aged Content Message
 
+## 1.4.1
+* Added setting for message class attribute.
+* Fixed missing filter argument.
+
 ## 1.4
 
 * Added settings. [Because](//wordpress.org/support/topic/no-settings-14?replies=5#post-6377383).

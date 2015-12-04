@@ -71,7 +71,9 @@ function aged_content_message__settings_init() {
 	}
 
 	// Later runs: check for and merge new defaults.
-	if( ! empty( array_diff_key( $defaults, $options ) ) ) {
+	$diff = array_diff_key( (array) $defaults, (array) $options );
+
+	if( ! empty( $diff ) ) {
 
 		$options = wp_parse_args( $options, $defaults );
 		update_option( 'aged_content_message__settings', $options );

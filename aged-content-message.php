@@ -5,10 +5,10 @@
  * Domain Path: /languages
  * Description: Displays a message at the top of single posts published x years ago or earlier, informing about content that may be outdated.
  * Author:      Caspar Hübinger
- * Author URI:  //profiles.wordpress.org/glueckpress/
- * Plugin URI:  //wordpress.org/plugins/aged-content-message
+ * Author URI:  https://profiles.wordpress.org/glueckpress/
+ * Plugin URI:  https://wordpress.org/plugins/aged-content-message
  * License:     GPLv3
- * Version:     1.4.1
+ * Version:     1.4.2
  */
 
 /*

@@ -1,5 +1,8 @@
 # Changelog Aged Content Message
 
+## 1.4.2
+* Tested compatibility with WordPress 4.6.
+
 ## 1.4.1
 * Added setting for message class attribute.
 * Fixed missing filter argument.

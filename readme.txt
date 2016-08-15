@@ -3,7 +3,7 @@ Contributors:      glueckpress, sergejmueller, kau-boy, bueltge, chrico
 Donate Link:       https://paypal.me/caspar
 Tags:              content, notification, text, message, date, time, outdated, simple, warning, alert
 Requires at least: 3.9
-Tested up to:      4.4
+Tested up to:      4.6
 Stable tag:        trunk
 License:           GPLv3
 License URI:       http://www.gnu.org/licenses/gpl-3.0.html
@@ -85,6 +85,13 @@ add_action( 'aged_content_message__the_content_condition',
 2. Settings page
 
 == Changelog ==
+
+= 1.4.2 =
+* Tested compatibility with WordPress 4.6.
+
+= 1.4.1 =
+* Added setting for message class attribute.
+* Fixed missing filter argument.
 
 = 1.4 =
 * Added settings. [Because](//wordpress.org/support/topic/no-settings-14?replies=5#post-6377383).

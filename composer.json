@@ -1,7 +1,7 @@
 {
     "name": "glueckpress/aged-content-message",
     "description": "Displays a message at the top of single posts published x years ago or earlier, informing about content that may be outdated.",
-    "version": "1.4.1",
+    "version": "1.4.2",
     "type": "wordpress-plugin",
     "keywords": [
         "comments"

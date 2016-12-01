@@ -22,8 +22,12 @@ function aged_content_message__the_content( $content ) {
 		return $content;
 	}
 
+	$options = get_option( 'aged_content_message__settings' );
+
+	$post_time = ( isset( $options[ 'modified_time' ] ) && '1' === $options[ 'modified_time' ] ) ? get_the_modified_time( 'U' ) : get_the_time( 'U' );
+
 	// Calculate age in years as a float
-	$years_diff = ( time() - get_the_time( 'U' ) ) / YEAR_IN_SECONDS;
+	$years_diff = ( time() - $post_time ) / YEAR_IN_SECONDS;
 	$age        = apply_filters( 'aged_content_message__the_content_age', floor( $years_diff ) );
 
 	$options = get_option( 'aged_content_message__settings' );

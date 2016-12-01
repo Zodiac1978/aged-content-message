@@ -113,6 +113,14 @@ function aged_content_message__settings_init() {
 	);
 
 	add_settings_field(
+		'modified_time',
+		__( 'Use last modified time instead of post time', 'aged-content-message' ),
+		'aged_content_message__modified_time',
+		'aged_content_message',
+		'aged_content_message_settings'
+	);
+
+	add_settings_field(
 		'heading',
 		__( 'Message Heading', 'aged-content-message' ),
 		'aged_content_message__heading_render',
@@ -178,6 +186,28 @@ function aged_content_message__activate_render() {
 	?>
 	<label for="aged_content_message__settings[activate]">
 		<input type="checkbox" id="aged_content_message__settings[activate]" name="aged_content_message__settings[activate]" <?php checked( esc_attr( $value ), 1 ); ?> value="1">
+		<?php echo $description; ?>
+	</label>
+	<?php
+}
+
+/**
+ * Modified time setting.
+ *
+ * @return void
+ */
+function aged_content_message__modified_time() {
+
+	$options = get_option( 'aged_content_message__settings' );
+	$value   = isset( $options[ 'modified_time' ] ) ? absint( $options[ 'modified_time' ] ) : 0;
+	$description = __( 'Use last modified time instead of post time.', 'aged-content-message' );
+
+	if ( ! empty( $value ) ) {
+		$description = __( '<strong>Your using last modified time on your website right now.</strong> Uncheck to use post time instead.', 'aged-content-message' );
+	}
+	?>
+	<label for="aged_content_message__settings[modified_time]">
+		<input type="checkbox" id="aged_content_message__settings[modified_time]" name="aged_content_message__settings[modified_time]" <?php checked( esc_attr( $value ), 1 ); ?> value="1">
 		<?php echo $description; ?>
 	</label>
 	<?php

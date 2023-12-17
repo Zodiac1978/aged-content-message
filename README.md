@@ -83,7 +83,7 @@ add_action( 'aged_content_message__the_content_condition',
 ```
 
 ## Screenshots
-![screenshot-1.jpg](https://raw.githubusercontent.com/Zodiac1978/aged-content-message/.wordpress-org/screenshot-1.jpg)
+![screenshot-1.jpg](https://raw.githubusercontent.com/Zodiac1978/aged-content-message/master/.wordpress-org/screenshot-1.jpg)
 _“The times, they are a-chagin’”: Message on a single post view informing about content that might be outdated._
 
 ![screenshot-2.jpg](https://raw.githubusercontent.com/Zodiac1978/aged-content-message/master/.wordpress-org/screenshot-2.jpg)

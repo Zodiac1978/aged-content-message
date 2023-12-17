@@ -4,11 +4,11 @@
  * Text Domain: aged-content-message
  * Domain Path: /languages
  * Description: Displays a message at the top of single posts published x years ago or earlier, informing about content that may be outdated.
- * Author:      Caspar Hübinger
- * Author URI:  https://profiles.wordpress.org/glueckpress/
+ * Author:      Torsten Landsiedel
+ * Author URI:  https://torstenlandsiedel.de/
  * Plugin URI:  https://wordpress.org/plugins/aged-content-message
  * License:     GPLv3
- * Version:     1.4.2
+ * Version:     1.4.3
  */
 
 /*

@@ -1,10 +1,10 @@
 === Aged Content Message ===
-Contributors:      glueckpress, sergejmueller, kau-boy, bueltge, chrico
-Donate Link:       https://paypal.me/caspar
+Contributors:      zodiac1978, glueckpress, sergejmueller, kau-boy, bueltge, chrico
+Donate Link:       https://paypal.me/zodiac1978
 Tags:              content, notification, text, message, date, time, outdated, simple, warning, alert
 Requires at least: 3.9
-Tested up to:      4.6
-Stable tag:        1.4.2
+Tested up to:      6.4
+Stable tag:        1.4.3
 License:           GPLv3
 License URI:       http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -85,6 +85,10 @@ add_action( 'aged_content_message__the_content_condition',
 2. Settings page
 
 == Changelog ==
+
+= 1.4.3 =
+* Changed ownership
+* Tested compatibility with WordPress 6.4.
 
 = 1.4.2 =
 * Tested compatibility with WordPress 4.6.

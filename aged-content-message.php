@@ -73,7 +73,7 @@ add_action( 'plugins_loaded', 'aged_content_message' );
  * Render aged content message.
  *
  * @param  integer $post_age Age of post in years, default is 1.
- * @return string|integer Number of years
+ * @return string Number of years
  */
 function aged_content_message__message_render( $post_age = 1 ) {
 
@@ -95,7 +95,7 @@ function aged_content_message__message_render( $post_age = 1 ) {
 	$post_age = absint( $post_age );
 
 	// Singular/plural form message.
-	return sprintf(
+	$output = sprintf(
 		// Balance those HTML tags.
 		wp_kses_post( $html ) . "\n",
 		aged_content_message__sanitize_html_class_names( $options['class'] ),
@@ -110,6 +110,7 @@ function aged_content_message__message_render( $post_age = 1 ) {
 			$post_age
 		)
 	);
+	return $output;
 }
 
 /**

@@ -3,7 +3,7 @@
  * Renders ouput in the front-end.
  */
 
-add_action( 'the_content', 'aged_content_message__the_content' );
+add_filter( 'the_content', 'aged_content_message__the_content' );
 add_action( 'wp_head', 'aged_content_message__print_css' );
 
 /**

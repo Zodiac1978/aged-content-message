@@ -177,7 +177,7 @@ function aged_content_message__activate_render() {
 	}
 	?>
 	<label for="aged_content_message__settings[activate]">
-		<input type="checkbox" id="aged_content_message__settings[activate]" name="aged_content_message__settings[activate]" <?php checked( esc_attr( $value ), 1 ); ?> value="1">
+		<input type="checkbox" id="aged_content_message__settings[activate]" name="aged_content_message__settings[activate]" <?php checked( esc_attr( (string) $value ), 1 ); ?> value="1">
 		<?php echo $description; ?>
 	</label>
 	<?php
@@ -195,7 +195,7 @@ function aged_content_message__min_age_render() {
 
 	$input = sprintf(
 		'<input type="number" min="1" id="aged_content_message__settings[min_age]" name="aged_content_message__settings[min_age]" value="%s" class="small-text">',
-		esc_attr( $value )
+		esc_attr( (string) $value )
 	);
 	?>
 	<label for="aged_content_message__settings[min_age]"><?php printf( __( 'Display message for posts older than %s year(s).', 'aged-content-message' ), $input ); ?></label>

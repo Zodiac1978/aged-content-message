@@ -33,10 +33,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/* Load plugin. */
+/**
+ * Load plugin
+ *
+ * @return void Init of the plugin.
+ */
 function aged_content_message() {
 
-	// Load textdomain
+	// Load textdomain.
 	load_plugin_textdomain(
 		'aged-content-message',
 		false,
@@ -49,7 +53,7 @@ function aged_content_message() {
 	if ( is_admin() && current_user_can( 'manage_options' ) ) {
 
 		// Load settings page.
-		require_once( $inc_dir . '/admin.php' );
+		require_once $inc_dir . '/admin.php';
 
 		// Adds a Settings link to plugins page.
 		add_filter(
@@ -60,7 +64,7 @@ function aged_content_message() {
 
 	// Front-end functionality.
 	if ( ! is_admin() ) {
-		require_once( $inc_dir . '/frontend.php' );
+		require_once $inc_dir . '/frontend.php';
 	}
 }
 add_action( 'plugins_loaded', 'aged_content_message' );
@@ -68,6 +72,7 @@ add_action( 'plugins_loaded', 'aged_content_message' );
 /**
  * Render aged content message.
  *
+ * @param  integer $post_age Age of post in years, default is 1.
  * @return string|integer Number of years
  */
 function aged_content_message__message_render( $post_age = 1 ) {
@@ -80,27 +85,29 @@ function aged_content_message__message_render( $post_age = 1 ) {
 	 * - message activator (required for front-end only)
 	 */
 	if ( empty( $options )
-		|| ! isset( $options[ 'html' ] )
+		|| ! isset( $options['html'] )
 		|| ! is_admin() && ! aged_content_message__is_activated()
 		) {
 		return;
 	}
 
-	$html     = force_balance_tags( $options[ 'html' ] );
+	$html     = force_balance_tags( $options['html'] );
 	$post_age = absint( $post_age );
 
 	// Singular/plural form message.
 	return sprintf(
 		// Balance those HTML tags.
 		wp_kses_post( $html ) . "\n",
-		aged_content_message__sanitize_html_class_names( $options[ 'class' ] ),
-		sanitize_post_field( 'post_title', $options[ 'heading' ], 0, 'display' ),
+		aged_content_message__sanitize_html_class_names( $options['class'] ),
+		sanitize_post_field( 'post_title', $options['heading'], 0, 'display' ),
 		sprintf(
 			_n(
-				sanitize_post_field( 'post_content', $options[ 'body_singular' ], 0, 'display' ),
-				sanitize_post_field( 'post_content', $options[ 'body_plural' ], 0, 'display' ),
-				$post_age, 'aged-content-message'
-			), $post_age
+				sanitize_post_field( 'post_content', $options['body_singular'], 0, 'display' ),
+				sanitize_post_field( 'post_content', $options['body_plural'], 0, 'display' ),
+				$post_age,
+				'aged-content-message'
+			),
+			$post_age
 		)
 	);
 }
@@ -114,49 +121,49 @@ function aged_content_message__defaults() {
 
 	$defaults = array();
 
-	// Activate message
-	$defaults[ 'activate' ] = 0;
+	// Activate message.
+	$defaults['activate'] = 0;
 
-	// Minimum post age
-	$defaults[ 'min_age' ] = absint( apply_filters( 'aged_content_message__the_content_min_age', 1 ) );
+	// Minimum post age.
+	$defaults['min_age'] = absint( apply_filters( 'aged_content_message__the_content_min_age', 1 ) );
 
-	// Text
-	$defaults[ 'heading' ]       = __( 'The times they are a-changin’.', 'aged-content-message' );
-	$defaults[ 'body_singular' ] = __( 'This post seems to be older than %s year—a long time on the internet. It might be outdated.', 'aged-content-message' );
-	$defaults[ 'body_plural' ]   = __( 'This post seems to be older than %s years—a long time on the internet. It might be outdated.', 'aged-content-message' );
+	// Text.
+	$defaults['heading']       = __( 'The times they are a-changin’.', 'aged-content-message' );
+	$defaults['body_singular'] = __( 'This post seems to be older than %s year—a long time on the internet. It might be outdated.', 'aged-content-message' );
+	$defaults['body_plural']   = __( 'This post seems to be older than %s years—a long time on the internet. It might be outdated.', 'aged-content-message' );
 
-	// Class
-	$defaults[ 'class' ] = 'aged-content-message';
+	// Class.
+	$defaults['class'] = 'aged-content-message';
 
-	// HTML
-	$defaults[ 'html' ]  = '<div class="%1$s">' . "\n";
-	$defaults[ 'html' ] .= '    <h5>%2$s</h5>' . "\n";
-	$defaults[ 'html' ] .= '    <p>%3$s</p>' . "\n";
-	$defaults[ 'html' ] .= '</div>';
+	// HTML.
+	$defaults['html']  = '<div class="%1$s">' . "\n";
+	$defaults['html'] .= '    <h5>%2$s</h5>' . "\n";
+	$defaults['html'] .= '    <p>%3$s</p>' . "\n";
+	$defaults['html'] .= '</div>';
 
-	// Styles
-	$defaults[ 'css' ]  = '.aged-content-message {' . "\n";
-	$defaults[ 'css' ] .= '    background: #f7f7f7;' . "\n";
-	$defaults[ 'css' ] .= '    border-left: 5px solid #f39c12;' . "\n";
-	$defaults[ 'css' ] .= '    font-family: inherit;' . "\n";
-	$defaults[ 'css' ] .= '    font-size: .875rem;' . "\n";
-	$defaults[ 'css' ] .= '    line-height: 1.5;' . "\n";
-	$defaults[ 'css' ] .= '    margin: 1.5rem 0;' . "\n";
-	$defaults[ 'css' ] .= '    padding: 1.5rem;' . "\n";
-	$defaults[ 'css' ] .= '}' . "\n";
-	$defaults[ 'css' ] .= '.aged-content-message h5 {' . "\n";
-	$defaults[ 'css' ] .= '    font-family: inherit;' . "\n";
-	$defaults[ 'css' ] .= '    font-size: .8125rem;' . "\n";
-	$defaults[ 'css' ] .= '    font-weight: bold;' . "\n";
-	$defaults[ 'css' ] .= '    line-height: 2;' . "\n";
-	$defaults[ 'css' ] .= '    margin: 0;' . "\n";
-	$defaults[ 'css' ] .= '    padding: 0;' . "\n";
-	$defaults[ 'css' ] .= '    text-transform: uppercase;' . "\n";
-	$defaults[ 'css' ] .= '}' . "\n";
-	$defaults[ 'css' ] .= '.aged-content-message p {' . "\n";
-	$defaults[ 'css' ] .= '    margin: 0;' . "\n";
-	$defaults[ 'css' ] .= '    padding: 0;' . "\n";
-	$defaults[ 'css' ] .= '}';
+	// Styles.
+	$defaults['css']  = '.aged-content-message {' . "\n";
+	$defaults['css'] .= '    background: #f7f7f7;' . "\n";
+	$defaults['css'] .= '    border-left: 5px solid #f39c12;' . "\n";
+	$defaults['css'] .= '    font-family: inherit;' . "\n";
+	$defaults['css'] .= '    font-size: .875rem;' . "\n";
+	$defaults['css'] .= '    line-height: 1.5;' . "\n";
+	$defaults['css'] .= '    margin: 1.5rem 0;' . "\n";
+	$defaults['css'] .= '    padding: 1.5rem;' . "\n";
+	$defaults['css'] .= '}' . "\n";
+	$defaults['css'] .= '.aged-content-message h5 {' . "\n";
+	$defaults['css'] .= '    font-family: inherit;' . "\n";
+	$defaults['css'] .= '    font-size: .8125rem;' . "\n";
+	$defaults['css'] .= '    font-weight: bold;' . "\n";
+	$defaults['css'] .= '    line-height: 2;' . "\n";
+	$defaults['css'] .= '    margin: 0;' . "\n";
+	$defaults['css'] .= '    padding: 0;' . "\n";
+	$defaults['css'] .= '    text-transform: uppercase;' . "\n";
+	$defaults['css'] .= '}' . "\n";
+	$defaults['css'] .= '.aged-content-message p {' . "\n";
+	$defaults['css'] .= '    margin: 0;' . "\n";
+	$defaults['css'] .= '    padding: 0;' . "\n";
+	$defaults['css'] .= '}';
 
 	return $defaults;
 }
@@ -173,7 +180,7 @@ function aged_content_message__is_activated() {
 
 	return apply_filters(
 		'aged_content_message__is_activated',
-		(bool) isset( $options[ 'activate' ] ) && 1 === absint( $options[ 'activate' ] )
+		(bool) isset( $options['activate'] ) && 1 === absint( $options['activate'] )
 	);
 }
 
@@ -192,7 +199,7 @@ function aged_content_message__sanitize_html_class_names( $class_names = '' ) {
 	foreach ( $classes_array as $k => $class_name ) {
 
 		// Let’s not loose umlauts, but replace them first.
-		$sanitized_as_title  = sanitize_title( $class_name );
+		$sanitized_as_title = sanitize_title( $class_name );
 
 		// Now remove all the junk, but keep the former umlauts.
 		$classes_array[ $k ] = sanitize_html_class( $sanitized_as_title );
@@ -207,14 +214,14 @@ function aged_content_message__sanitize_html_class_names( $class_names = '' ) {
  *
  * @return void
  */
-function aged_content_message__uninstall () {
+function aged_content_message__uninstall() {
 
 	// Show admin notice again as a reminder when re-activating.
 	delete_option( 'aged_content_message__status' );
 
 	// Deactivate displaying of message in the frontend.
 	$options = get_option( 'aged_content_message__settings' );
-	unset( $options[ 'activate' ] );
+	unset( $options['activate'] );
 
 	// Leave other settings untouched.
 	update_option( 'aged_content_message__settings', $options );

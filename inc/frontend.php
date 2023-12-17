@@ -2,13 +2,14 @@
 /**
  * Renders ouput in the front-end.
  */
+
 add_action( 'the_content', 'aged_content_message__the_content' );
 add_action( 'wp_head', 'aged_content_message__print_css' );
 
 /**
  * Conditionally add a message to content.
  *
- * @param  string $content Post content
+ * @param  string $content Post content.
  * @return string          Post content, possibly prepended by message
  */
 function aged_content_message__the_content( $content ) {
@@ -22,14 +23,14 @@ function aged_content_message__the_content( $content ) {
 		return $content;
 	}
 
-	// Calculate age in years as a float
+	// Calculate age in years as a float.
 	$years_diff = ( time() - get_the_time( 'U' ) ) / YEAR_IN_SECONDS;
 	$age        = apply_filters( 'aged_content_message__the_content_age', floor( $years_diff ) );
 
 	$options = get_option( 'aged_content_message__settings' );
 
 	// Return original content if not too old.
-	if ( $years_diff < absint( $options[ 'min_age' ] ) ) {
+	if ( $years_diff < absint( $options['min_age'] ) ) {
 		return $content;
 	}
 
@@ -59,13 +60,13 @@ function aged_content_message__print_css() {
 	$options = get_option( 'aged_content_message__settings' );
 
 	// Empty value: user has removed CSS, go no further.
-	if ( isset( $options[ 'css' ] ) && '' === trim( $options[ 'css' ] ) ) {
+	if ( isset( $options['css'] ) && '' === trim( $options['css'] ) ) {
 		return;
 	}
 
 	// Print CSS to <head> section.
 	printf(
 		'<style type="text/css" media="screen" id="aged-content-message-css">%s</style>',
-		wp_kses_post( $options[ 'css' ] )
+		wp_kses_post( $options['css'] )
 	);
 }

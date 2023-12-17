@@ -71,7 +71,7 @@ Sure, just empty the _CSS_ field and no styles shall be applied. If you want to 
 
 ### Where have all the filters gone?
 
-You can still use those good old filters from [v1.3](https://github.com/glueckpress/aged-content-message/tree/v1.3), like for this conditional handbrake that doesn’t have a setting (yet):
+You can still use those good old filters from [v1.3](https://github.com/Zodiac1978/aged-content-message/tree/v1.3), like for this conditional handbrake that doesn’t have a setting (yet):
 
 ```php
 /* Set condition for displaying message to include pages. */
@@ -84,8 +84,8 @@ add_action( 'aged_content_message__the_content_condition',
 
 ## Screenshots
 
-![screenshot-1.jpg](https://raw.githubusercontent.com/glueckpress/aged-content-message/master/assets/screenshot-1.jpg)
+![screenshot-1.jpg](https://raw.githubusercontent.com/Zodiac1978/aged-content-message/.wordpress-org/assets/screenshot-1.jpg)
 _“The times, they are a-chagin’”: Message on a single post view informing about content that might be outdated._
 
-![screenshot-2.jpg](https://raw.githubusercontent.com/glueckpress/aged-content-message/master/assets/screenshot-2.jpg)
+![screenshot-2.jpg](https://raw.githubusercontent.com/Zodiac1978/aged-content-message/master/.wordpress-org/screenshot-2.jpg)
 _Settings page_

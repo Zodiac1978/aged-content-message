@@ -288,7 +288,7 @@ function aged_content_message__css_render() {
 	$value   = sanitize_post_field( 'post_content', $options['css'], 0, 'db' );
 	?>
 	<textarea cols="40" rows="6" name="aged_content_message__settings[css]" class="regular-text code"><?php echo esc_textarea( $value ); ?></textarea>
-	<p class="description"><?php esc_html_e( 'Leave blank in order to not apply any styling, .e.g. when using an external stylesheet.', 'aged-content-message' ); ?></p>
+	<p class="description"><?php esc_html_e( 'Leave blank in order to not apply any styling, e.g. when using an external stylesheet.', 'aged-content-message' ); ?></p>
 	<?php
 }
 
@@ -300,7 +300,7 @@ function aged_content_message__css_render() {
 function aged_content_message__settings_fields() {
 
 	?>
-	<p><?php esc_html_e( 'Configure your settgins, then review the message above and activate it for your website.', 'aged-content-message' ); ?></p>
+	<p><?php esc_html_e( 'Configure your settings, then review the message above and activate it for your website.', 'aged-content-message' ); ?></p>
 	<?php
 }
 

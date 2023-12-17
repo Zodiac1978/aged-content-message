@@ -1,7 +1,7 @@
 {
-    "name": "glueckpress/aged-content-message",
+    "name": "Zodiac1978/aged-content-message",
     "description": "Displays a message at the top of single posts published x years ago or earlier, informing about content that may be outdated.",
-    "version": "1.4.2",
+    "version": "1.4.3",
     "type": "wordpress-plugin",
     "keywords": [
         "comments"
@@ -13,15 +13,36 @@
             "email": "caspar@glueckpress.com",
             "homepage": "https://profiles.wordpress.org/glueckpress",
             "role": "Developer"
+        },
+        {
+            "name": "Torsten Landsiedel",
+            "email": "mail@torstenlandsiedel.de",
+            "homepage": "https://profiles.wordpress.org/zodiac1978",
+            "role": "Developer"
         }
     ],
     "support": {
         "docs": "https://github.com/glueckpress/aged-content-message/blob/master/README.md",
         "forum": "https://wordpress.org/support/plugin/aged-content-message",
-        "issues": "https://github.com/glueckpress/aged-content-message/issues",
-        "source": "https://github.com/glueckpress/aged-content-message/"
+        "issues": "https://github.com/Zodiac1978/aged-content-message/issues",
+        "source": "https://github.com/Zodiac1978/aged-content-message/"
     },
     "require": {
-        "php": ">=5.2"
+        "php": ">=5.6"
     }
+    "require-dev": {
+		"ext-curl": "*",
+		"ext-dom": "*",
+		"ext-json": "*",
+		"ext-sqlite3": "*",
+		"szepeviktor/phpstan-wordpress": "^1.3"
+	},
+	"autoload": {
+		"psr-4": {
+			"App\\": "src"
+		}
+	},
+	"scripts": {
+		"analyze": "@php ./vendor/bin/phpstan analyze"
+	}
 }

@@ -12,7 +12,8 @@
  */
 
 /*
-Copyright (C)  2014-2015 Caspar Hübinger
+Copyright (C)  2014-2023 Caspar Hübinger
+Copyright (C)  2023- Torsten Landsiedel
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -88,7 +89,7 @@ function aged_content_message__message_render( $post_age = 1 ) {
 		|| ! isset( $options['html'] )
 		|| ! is_admin() && ! aged_content_message__is_activated()
 		) {
-		return;
+		return null;
 	}
 
 	$html     = force_balance_tags( $options['html'] );

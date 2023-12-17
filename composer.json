@@ -1,12 +1,11 @@
 {
     "name": "zodiac1978/aged-content-message",
     "description": "Displays a message at the top of single posts published x years ago or earlier, informing about content that may be outdated.",
-    "version": "1.4.3",
     "type": "wordpress-plugin",
     "keywords": [
         "comments"
     ],
-    "license": "GPL-3.0",
+    "license": "GPL-3.0-or-later",
     "authors": [
         {
             "name": "Caspar Hübinger",

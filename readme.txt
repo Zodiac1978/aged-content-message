@@ -4,7 +4,7 @@ Donate Link:       https://paypal.me/zodiac1978
 Tags:              content, notification, text, message, date, time, outdated, simple, warning, alert
 Requires at least: 3.9
 Tested up to:      6.4
-Stable tag:        1.4.3
+Stable tag:        1.4.4
 License:           GPLv3
 License URI:       http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -22,7 +22,7 @@ This simple WordPress plugin displays a message in any single post that has been
 
 == Installation ==
 
-If you don’t know how to install a plugin for WordPress, [here’s how](http://codex.wordpress.org/Managing_Plugins#Installing_Plugins).
+If you don’t know how to install a plugin for WordPress, [here’s how](https://wordpress.org/documentation/article/manage-plugins/#installing-plugins-1).
 
 == Frequently Asked Questions ==
 

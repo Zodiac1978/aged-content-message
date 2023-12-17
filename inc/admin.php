@@ -363,7 +363,10 @@ function aged_content_message__settings_preview() {
 	$age     = absint( $options['min_age'] );
 	$css     = wp_kses_post( $options['css'] );
 	?>
-	<p><?php esc_html_e( 'This is a preview of how your notice looks like with your current settings.<br>Note: Styling may vary dependent on theme styles inherited on your website.', 'aged-content-message' ); ?></p>
+	<p>
+		<?php esc_html_e( 'This is a preview of how your notice looks like with your current settings.', 'aged-content-message' ); ?><br>
+		<?php esc_html_e( 'Note: Styling may vary dependent on theme styles inherited on your website.', 'aged-content-message' ); ?>
+	</p>
 	<div class="aged-content-message-preview">
 		<style type="text/css" media="screen" scoped>
 			.aged-content-message-preview {

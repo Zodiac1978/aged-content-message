@@ -86,9 +86,12 @@ add_action( 'aged_content_message__the_content_condition',
 
 == Changelog ==
 
-= 1.4.3 =
+= 1.4.4 =
 * Changed ownership
 * Tested compatibility with WordPress 6.4.
+
+= 1.4.3 =
+* Tested compatibility with WordPress 5.0.3.
 
 = 1.4.2 =
 * Tested compatibility with WordPress 4.6.

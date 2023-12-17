@@ -4,7 +4,7 @@
 * Tags:              content, notification, text, message, date, time, outdated, simple, warning, alert
 * Requires at least: 3.9
 * Tested up to:      6.4
-* Stable tag:        1.4.3
+* Stable tag:        1.4.4
 * License:           GPLv3
 * License URI:       http://www.gnu.org/licenses/gpl-3.0.html
 

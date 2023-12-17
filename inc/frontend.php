@@ -29,6 +29,11 @@ function aged_content_message__the_content( $content ) {
 
 	$options = get_option( 'aged_content_message__settings' );
 
+	// Return original content if no HTMl is set up.
+	if ( ! isset( $options['html'] ) ) {
+		return $content;
+	}
+
 	// Return original content if not too old.
 	if ( $years_diff < absint( $options['min_age'] ) ) {
 		return $content;

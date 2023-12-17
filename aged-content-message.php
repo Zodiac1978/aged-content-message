@@ -80,18 +80,6 @@ function aged_content_message__message_render( $post_age = 1 ) {
 
 	$options = get_option( 'aged_content_message__settings' );
 
-	/**
-	 * Required settings:
-	 * - message HTML
-	 * - message activator (required for front-end only)
-	 */
-	if ( empty( $options )
-		|| ! isset( $options['html'] )
-		|| ! is_admin() && ! aged_content_message__is_activated()
-		) {
-		return null;
-	}
-
 	$html     = force_balance_tags( $options['html'] );
 	$post_age = absint( $post_age );
 

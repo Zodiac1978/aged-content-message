@@ -68,7 +68,7 @@ function aged_content_message() {
 		require_once $inc_dir . '/frontend.php';
 	}
 }
-add_action( 'plugins_loaded', 'aged_content_message' );
+add_action( 'init', 'aged_content_message' );
 
 /**
  * Render aged content message.

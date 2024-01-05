@@ -1,5 +1,5 @@
 === Aged Content Message ===
-Contributors:      zodiac1978, glueckpress, sergejmueller, kau-boy, bueltge, chrico
+Contributors:      zodiac1978, glueckpress, soean, kau-boy, bueltge, chrico
 Donate Link:       https://paypal.me/zodiac1978
 Tags:              content, notification, text, message, date, time, outdated, simple, warning, alert
 Requires at least: 3.9

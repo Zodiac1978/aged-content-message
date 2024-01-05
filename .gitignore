@@ -2,3 +2,7 @@
 *.bak
 *.psd
 *.ai
+
+# Files and folders related to build/test tools
+/vendor
+/composer.lock

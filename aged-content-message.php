@@ -177,7 +177,7 @@ function aged_content_message__is_activated() {
 /**
  * Sanitize a string divided by spaces as HTML class name(s).
  *
- * @param  string $class_names A string of 1 or more class names
+ * @param  string $class_names A string of 1 or more class names.
  * @return string              Sanitized string
  */
 function aged_content_message__sanitize_html_class_names( $class_names = '' ) {

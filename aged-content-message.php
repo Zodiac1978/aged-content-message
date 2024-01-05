@@ -118,9 +118,11 @@ function aged_content_message__defaults() {
 	$defaults['min_age'] = absint( apply_filters( 'aged_content_message__the_content_min_age', 1 ) );
 
 	// Text.
-	$defaults['heading']       = __( 'The times they are a-changin’.', 'aged-content-message' );
-	$defaults['body_singular'] = __( 'This post seems to be older than %s year—a long time on the internet. It might be outdated.', 'aged-content-message' );
-	$defaults['body_plural']   = __( 'This post seems to be older than %s years—a long time on the internet. It might be outdated.', 'aged-content-message' );
+	$defaults['heading'] = __( 'The times they are a-changin’.', 'aged-content-message' );
+	/* translators: %d = Amount of years is 1 */
+	$defaults['body_singular'] = __( 'This post seems to be older than %d year—a long time on the internet. It might be outdated.', 'aged-content-message' );
+	/* translators: %d = Amount of years */
+	$defaults['body_plural'] = __( 'This post seems to be older than %d years—a long time on the internet. It might be outdated.', 'aged-content-message' );
 
 	// Class.
 	$defaults['class'] = 'aged-content-message';

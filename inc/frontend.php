@@ -1,6 +1,6 @@
 <?php
 /**
- * Renders ouput in the front-end.
+ * Renders output in the front-end.
  */
 
 add_filter( 'the_content', 'aged_content_message__the_content' );

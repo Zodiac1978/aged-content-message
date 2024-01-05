@@ -182,7 +182,7 @@ function aged_content_message__is_activated() {
  */
 function aged_content_message__sanitize_html_class_names( $class_names = '' ) {
 
-	// This can be multiple class names devided by spaces.
+	// This can be multiple class names divided by spaces.
 	$classes_array = explode( ' ', $class_names );
 
 	// Sanitize each class name from the string.

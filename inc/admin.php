@@ -3,7 +3,7 @@
  * Adds a settings page to Settings menu.
  */
 
-add_action( 'admin_notices', 'aged_content_message__admin_print_avtivation_notice' );
+add_action( 'admin_notices', 'aged_content_message__admin_print_activation_notice' );
 add_action( 'admin_menu', 'aged_content_message__add_admin_menu' );
 add_action( 'admin_init', 'aged_content_message__settings_init' );
 
@@ -331,7 +331,7 @@ function aged_content_message__settings_page() {
  *
  * @return void
  */
-function aged_content_message__admin_print_avtivation_notice() {
+function aged_content_message__admin_print_activation_notice() {
 
 	$status = get_option( 'aged_content_message__status' );
 

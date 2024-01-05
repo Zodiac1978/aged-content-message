@@ -372,7 +372,7 @@ function aged_content_message__settings_preview() {
 			.aged-content-message-preview {
 				background: #212121;
 				border: 10px solid #212121;
-                box-sizing: border-box;
+				box-sizing: border-box;
 				max-width: 36rem;
 				padding: 0;
 				width: 95%;

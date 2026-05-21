@@ -1,5 +1,5 @@
 === Aged Content Message ===
-Contributors:      zodiac1978, glueckpress, soean, kau-boy, bueltge, chrico
+Contributors:      zodiac1978, soean, kau-boy, bueltge, chrico
 Donate Link:       https://paypal.me/zodiac1978
 Tags:              outdated, notification, warning, obsolete, superseded
 Requires at least: 3.9

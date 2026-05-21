@@ -409,7 +409,7 @@ function aged_content_message__settings_preview() {
 		<?php esc_html_e( 'Note: Styling may vary dependent on theme styles inherited on your website.', 'aged-content-message' ); ?>
 	</p>
 	<div class="aged-content-message-preview">
-		<style type="text/css" media="screen" scoped>
+		<style type="text/css" media="screen">
 			.aged-content-message-preview {
 				background: #212121;
 				border: 10px solid #212121;

@@ -1,7 +1,7 @@
 === Aged Content Message ===
 Contributors:      zodiac1978, glueckpress, soean, kau-boy, bueltge, chrico
 Donate Link:       https://paypal.me/zodiac1978
-Tags:              content, notification, text, message, date, time, outdated, simple, warning, alert
+Tags:              outdated, notification, warning, obsolete, superseded
 Requires at least: 3.9
 Tested up to:      7.0
 Stable tag:        1.4.5

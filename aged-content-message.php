@@ -8,7 +8,7 @@
  * Author URI:  https://torstenlandsiedel.de/
  * Plugin URI:  https://wordpress.org/plugins/aged-content-message
  * License:     GPLv3
- * Version:     1.4.4
+ * Version:     1.4.5
  */
 
 /*

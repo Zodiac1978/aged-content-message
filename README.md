@@ -3,8 +3,8 @@
 * Donate Link:       https://paypal.me/zodiac1978
 * Tags:              content, notification, text, message, date, time, outdated, simple, warning, alert
 * Requires at least: 3.9
-* Tested up to:      6.4
-* Stable tag:        1.4.4
+* Tested up to:      7.0
+* Stable tag:        1.4.5
 * License:           GPLv3
 * License URI:       http://www.gnu.org/licenses/gpl-3.0.html
 

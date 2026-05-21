@@ -1,5 +1,23 @@
 # Changelog Aged Content Message
 
+## 1.4.5
+* Fix warnings due to missing options keys
+* Sanitize settings
+* Remove "scoped" as it is not much supported 
+* Fix some typos (Thanks Sören!)
+* Tweak CSS
+* Tweak buildprocess
+* Tweak i18n and code documentations
+* Remove translations from plugin (translate.wordpress.org is handling this)
+* Tested compatibility with WordPress 7.0.
+
+## 1.4.4
+* Changed ownership
+* Tested compatibility with WordPress 6.4.
+
+## 1.4.3
+* Tested compatibility with WordPress 5.0.3.
+
 ## 1.4.2
 * Tested compatibility with WordPress 4.6.
 

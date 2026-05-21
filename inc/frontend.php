@@ -3,6 +3,10 @@
  * Renders output in the front-end.
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 add_filter( 'the_content', 'aged_content_message__the_content' );
 add_action( 'wp_head', 'aged_content_message__print_css' );
 

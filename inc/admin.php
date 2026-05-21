@@ -3,6 +3,10 @@
  * Adds a settings page to Settings menu.
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 add_action( 'admin_notices', 'aged_content_message__admin_print_activation_notice' );
 add_action( 'admin_menu', 'aged_content_message__add_admin_menu' );
 add_action( 'admin_init', 'aged_content_message__settings_init' );

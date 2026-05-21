@@ -82,6 +82,7 @@ function aged_content_message__message_render( $post_age = 1 ) {
 
 	$html     = force_balance_tags( $options['html'] );
 	$post_age = absint( $post_age );
+	$body     = 1 === $post_age ? $options['body_singular'] : $options['body_plural'];
 
 	// Singular/plural form message.
 	$output = sprintf(
@@ -90,12 +91,7 @@ function aged_content_message__message_render( $post_age = 1 ) {
 		aged_content_message__sanitize_html_class_names( $options['class'] ),
 		sanitize_post_field( 'post_title', $options['heading'], 0, 'display' ),
 		sprintf(
-			_n(
-				sanitize_post_field( 'post_content', $options['body_singular'], 0, 'display' ),
-				sanitize_post_field( 'post_content', $options['body_plural'], 0, 'display' ),
-				$post_age,
-				'aged-content-message'
-			),
+			sanitize_post_field( 'post_content', $body, 0, 'display' ),
 			$post_age
 		)
 	);

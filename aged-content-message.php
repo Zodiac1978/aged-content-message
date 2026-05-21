@@ -78,7 +78,7 @@ add_action( 'init', 'aged_content_message' );
  */
 function aged_content_message__message_render( $post_age = 1 ) {
 
-	$options = get_option( 'aged_content_message__settings' );
+	$options = aged_content_message__get_settings();
 
 	$html     = force_balance_tags( $options['html'] );
 	$post_age = absint( $post_age );
@@ -100,6 +100,19 @@ function aged_content_message__message_render( $post_age = 1 ) {
 		)
 	);
 	return $output;
+}
+
+/**
+ * Get plugin settings with defaults for missing or not-yet-created options.
+ *
+ * @return array Settings merged with defaults.
+ */
+function aged_content_message__get_settings() {
+
+	return wp_parse_args(
+		(array) get_option( 'aged_content_message__settings', array() ),
+		aged_content_message__defaults()
+	);
 }
 
 /**
@@ -168,7 +181,7 @@ function aged_content_message__defaults() {
  */
 function aged_content_message__is_activated() {
 
-	$options = get_option( 'aged_content_message__settings' );
+	$options = aged_content_message__get_settings();
 
 	return apply_filters(
 		'aged_content_message__is_activated',
@@ -212,7 +225,7 @@ function aged_content_message__uninstall() {
 	delete_option( 'aged_content_message__status' );
 
 	// Deactivate displaying of message in the frontend.
-	$options = get_option( 'aged_content_message__settings' );
+	$options = aged_content_message__get_settings();
 	unset( $options['activate'] );
 
 	// Leave other settings untouched.

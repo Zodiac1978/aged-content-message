@@ -27,10 +27,10 @@ function aged_content_message__the_content( $content ) {
 	$years_diff = ( time() - get_the_time( 'U' ) ) / YEAR_IN_SECONDS;
 	$age        = apply_filters( 'aged_content_message__the_content_age', floor( $years_diff ) );
 
-	$options = get_option( 'aged_content_message__settings' );
+	$options = aged_content_message__get_settings();
 
-	// Return original content if no HTMl is set up.
-	if ( ! isset( $options['html'] ) ) {
+	// Return original content if no HTML is set up.
+	if ( '' === trim( $options['html'] ) ) {
 		return $content;
 	}
 
@@ -62,7 +62,7 @@ function aged_content_message__print_css() {
 		return;
 	}
 
-	$options = get_option( 'aged_content_message__settings' );
+	$options = aged_content_message__get_settings();
 
 	// Empty value: user has removed CSS, go no further.
 	if ( isset( $options['css'] ) && '' === trim( $options['css'] ) ) {

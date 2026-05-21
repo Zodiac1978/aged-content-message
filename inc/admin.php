@@ -242,8 +242,23 @@ function aged_content_message__min_age_render() {
 	?>
 	<label for="aged_content_message__settings[min_age]">
 		<?php
-		/* translators: %s = Amount of years */
-		printf( esc_html__( 'Display message for posts older than %s year(s).', 'aged-content-message' ), $input );
+		echo wp_kses(
+			sprintf(
+				/* translators: %s = Amount of years */
+				esc_html__( 'Display message for posts older than %s year(s).', 'aged-content-message' ),
+				$input
+			),
+			array(
+				'input' => array(
+					'class' => true,
+					'id'    => true,
+					'min'   => true,
+					'name'  => true,
+					'type'  => true,
+					'value' => true,
+				),
+			)
+		);
 		?>
 	</label>
 	<?php
@@ -275,7 +290,18 @@ function aged_content_message__body_singular_render() {
 	?>
 	<textarea cols="46" rows="6" id="aged_content_message__settings[body_singular]" name="aged_content_message__settings[body_singular]" class="regular-text"><?php echo esc_textarea( $value ); ?></textarea>
 	<p class="description">
-		<?php _e( '<code>%s</code> = post age in years (rounded)', 'aged-content-message' ); // phpcs:ignore error ?>
+		<?php
+		echo wp_kses(
+			sprintf(
+				/* translators: %s = post age in years */
+				esc_html__( '%s = post age in years (rounded)', 'aged-content-message' ),
+				'<code>%s</code>'
+			),
+			array(
+				'code' => array(),
+			)
+		);
+		?>
 	</p>
 	<?php
 }
@@ -292,7 +318,18 @@ function aged_content_message__body_plural_render() {
 	?>
 	<textarea cols="46" rows="6" id="aged_content_message__settings[body_plural]" name="aged_content_message__settings[body_plural]" class="regular-text"><?php echo esc_textarea( $value ); ?></textarea>
 	<p class="description">
-		<?php _e( '<code>%s</code> = post age in years (rounded)', 'aged-content-message' ); // phpcs:ignore error ?>
+		<?php
+		echo wp_kses(
+			sprintf(
+				/* translators: %s = post age in years */
+				esc_html__( '%s = post age in years (rounded)', 'aged-content-message' ),
+				'<code>%s</code>'
+			),
+			array(
+				'code' => array(),
+			)
+		);
+		?>
 	</p>
 	<?php
 }
@@ -324,7 +361,21 @@ function aged_content_message__html_render() {
 	$value   = sanitize_post_field( 'post_content', $html, 0, 'db' );
 	?>
 	<textarea cols="40" rows="6" id="aged_content_message__settings[html]" name="aged_content_message__settings[html]" class="regular-text code"><?php echo esc_textarea( $value ); ?></textarea>
-	<p class="description"><?php _e( '<code>%1$s</code> = message heading; <code>%2$s</code> = message body', 'aged-content-message' ); // phpcs:ignore error ?></p>
+	<p class="description">
+		<?php
+		echo wp_kses(
+			sprintf(
+				/* translators: 1: message heading placeholder, 2: message body placeholder */
+				esc_html__( '%1$s = message heading; %2$s = message body', 'aged-content-message' ),
+				'<code>%1$s</code>',
+				'<code>%2$s</code>'
+			),
+			array(
+				'code' => array(),
+			)
+		);
+		?>
+	</p>
 	<?php
 }
 
@@ -397,7 +448,7 @@ function aged_content_message__admin_print_activation_notice() {
 	);
 
 	// Print notice.
-	printf( '<div class="notice notice-success is-dismissible"><p>%s</p></div>', $message );
+	printf( '<div class="notice notice-success is-dismissible"><p>%s</p></div>', wp_kses_post( $message ) );
 
 	// Prevent annoyance.
 	update_option( 'aged_content_message__status', 'dismissed' );
@@ -429,11 +480,11 @@ function aged_content_message__settings_preview() {
 				width: 95%;
 			}
 
-			<?php echo $css; ?>
+			<?php echo wp_kses_post( $css ); ?>
 
 		</style>
 
-		<?php echo aged_content_message__message_render( $age ); ?>
+		<?php echo wp_kses_post( aged_content_message__message_render( $age ) ); ?>
 
 	</div>
 	<?php

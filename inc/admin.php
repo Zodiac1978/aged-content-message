@@ -79,7 +79,7 @@ function aged_content_message__settings_init() {
 		update_option( 'aged_content_message__settings', $options );
 	}
 
-	register_setting( 'aged_content_message', 'aged_content_message__settings' );
+	register_setting( 'aged_content_message', 'aged_content_message__settings', 'aged_content_message__sanitize_settings' );
 
 	add_settings_section(
 		'aged_content_message_preview',
@@ -162,6 +162,37 @@ function aged_content_message__settings_init() {
 }
 
 /**
+ * Sanitize settings before saving.
+ *
+ * @param  array $input Raw settings submitted from the settings form.
+ * @return array        Sanitized settings.
+ */
+function aged_content_message__sanitize_settings( $input ) {
+
+	$input    = (array) $input;
+	$defaults = aged_content_message__defaults();
+	$output   = array();
+	$min_age  = isset( $input['min_age'] ) && is_scalar( $input['min_age'] ) ? wp_unslash( $input['min_age'] ) : $defaults['min_age'];
+	$heading  = isset( $input['heading'] ) && is_scalar( $input['heading'] ) ? wp_unslash( $input['heading'] ) : $defaults['heading'];
+	$singular = isset( $input['body_singular'] ) && is_scalar( $input['body_singular'] ) ? wp_unslash( $input['body_singular'] ) : $defaults['body_singular'];
+	$plural   = isset( $input['body_plural'] ) && is_scalar( $input['body_plural'] ) ? wp_unslash( $input['body_plural'] ) : $defaults['body_plural'];
+	$class    = isset( $input['class'] ) && is_scalar( $input['class'] ) ? wp_unslash( $input['class'] ) : $defaults['class'];
+	$html     = isset( $input['html'] ) && is_scalar( $input['html'] ) ? wp_unslash( $input['html'] ) : $defaults['html'];
+	$css      = isset( $input['css'] ) && is_scalar( $input['css'] ) ? wp_unslash( $input['css'] ) : $defaults['css'];
+
+	$output['activate']      = ! empty( $input['activate'] ) ? 1 : 0;
+	$output['min_age']       = max( 1, absint( $min_age ) );
+	$output['heading']       = sanitize_post_field( 'post_title', $heading, 0, 'db' );
+	$output['body_singular'] = sanitize_post_field( 'post_content', $singular, 0, 'db' );
+	$output['body_plural']   = sanitize_post_field( 'post_content', $plural, 0, 'db' );
+	$output['class']         = aged_content_message__sanitize_html_class_names( $class );
+	$output['html']          = wp_kses_post( force_balance_tags( $html ) );
+	$output['css']           = wp_strip_all_tags( $css );
+
+	return $output;
+}
+
+/**
  * Activate Message setting.
  *
  * @return void
@@ -190,7 +221,6 @@ function aged_content_message__activate_render() {
  * @return void
  */
 function aged_content_message__min_age_render() {
-	global $allowedtags;
 
 	$options = aged_content_message__get_settings();
 	$value   = absint( $options['min_age'] );
@@ -203,7 +233,7 @@ function aged_content_message__min_age_render() {
 	<label for="aged_content_message__settings[min_age]">
 		<?php
 		/* translators: %s = Amount of years */
-		printf( esc_html__( 'Display message for posts older than %s year(s).', 'aged-content-message' ), wp_kses( $input, $allowedtags ) );
+		printf( esc_html__( 'Display message for posts older than %s year(s).', 'aged-content-message' ), $input );
 		?>
 	</label>
 	<?php

@@ -443,7 +443,8 @@ function aged_content_message__admin_print_activation_notice() {
 	}
 
 	$message = sprintf(
-		__( '<strong>Aged Content Message</strong> has been activated. Edit your <a href="%s">settings</a> in order to see the actual notice displayed on your site.', 'aged-content-message' ), // phpcs:ignore error
+		/* translators: %s = URL to the plugin settings page */
+		__( '<strong>Aged Content Message</strong> has been activated. Edit your <a href="%s">settings</a> in order to see the actual notice displayed on your site.', 'aged-content-message' ),
 		esc_url( aged_content_message__admin_get_settings_page_url() )
 	);
 

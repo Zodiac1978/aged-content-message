@@ -79,7 +79,13 @@ function aged_content_message__settings_init() {
 		update_option( 'aged_content_message__settings', $options );
 	}
 
-	register_setting( 'aged_content_message', 'aged_content_message__settings', 'aged_content_message__sanitize_settings' );
+	register_setting(
+		'aged_content_message',
+		'aged_content_message__settings',
+		array(
+			'sanitize_callback' => 'aged_content_message__sanitize_settings',
+		)
+	);
 
 	add_settings_section(
 		'aged_content_message_preview',
